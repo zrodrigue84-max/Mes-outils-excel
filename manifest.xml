@@ -7,7 +7,7 @@
   xsi:type="TaskPaneApp">
 
   <Id>11111111-2222-3333-4444-555555555556</Id>
-  <Version>1.0.0.1</Version>
+  <Version>1.0.0.2</Version>
   <ProviderName>Suite IA Pro</ProviderName>
   <DefaultLocale>fr-FR</DefaultLocale>
   <DisplayName DefaultValue="Suite IA Pro"/>
@@ -30,7 +30,7 @@
 
   <Permissions>ReadWriteDocument</Permissions>
 
-  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_1">
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
     <Hosts>
       <Host xsi:type="Workbook">
         <DesktopFormFactor>
@@ -41,7 +41,7 @@
           </GetStarted>
 
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
-            <OfficeTab id="TabSuiteIAPro">
+            <CustomTab id="TabSuiteIAPro">
               <Label resid="Tab.Label"/>
 
               <Group id="GroupFinance">
@@ -64,7 +64,6 @@
                     <bt:Image size="80" resid="Icon.Finance.80"/>
                   </Icon>
                   <Action xsi:type="ShowTaskpane">
-                    <TaskpaneId>TaskpaneFinanceRatios</TaskpaneId>
                     <SourceLocation resid="Taskpane.Finance.Ratios"/>
                   </Action>
                 </Control>
@@ -81,7 +80,6 @@
                     <bt:Image size="80" resid="Icon.Finance.80"/>
                   </Icon>
                   <Action xsi:type="ShowTaskpane">
-                    <TaskpaneId>TaskpaneFinanceReport</TaskpaneId>
                     <SourceLocation resid="Taskpane.Finance.Report"/>
                   </Action>
                 </Control>
@@ -107,7 +105,6 @@
                     <bt:Image size="80" resid="Icon.Avis.80"/>
                   </Icon>
                   <Action xsi:type="ShowTaskpane">
-                    <TaskpaneId>TaskpaneAvisSentiments</TaskpaneId>
                     <SourceLocation resid="Taskpane.Avis.Sentiments"/>
                   </Action>
                 </Control>
@@ -124,7 +121,6 @@
                     <bt:Image size="80" resid="Icon.Avis.80"/>
                   </Icon>
                   <Action xsi:type="ShowTaskpane">
-                    <TaskpaneId>TaskpaneAvisReport</TaskpaneId>
                     <SourceLocation resid="Taskpane.Avis.Report"/>
                   </Action>
                 </Control>
@@ -150,7 +146,6 @@
                     <bt:Image size="80" resid="Icon.Stocks.80"/>
                   </Icon>
                   <Action xsi:type="ShowTaskpane">
-                    <TaskpaneId>TaskpaneStocksWilson</TaskpaneId>
                     <SourceLocation resid="Taskpane.Stocks.Wilson"/>
                   </Action>
                 </Control>
@@ -167,12 +162,11 @@
                     <bt:Image size="80" resid="Icon.Stocks.80"/>
                   </Icon>
                   <Action xsi:type="ShowTaskpane">
-                    <TaskpaneId>TaskpaneStocksSecurity</TaskpaneId>
                     <SourceLocation resid="Taskpane.Stocks.Security"/>
                   </Action>
                 </Control>
               </Group>
-            </OfficeTab>
+            </CustomTab>
           </ExtensionPoint>
         </DesktopFormFactor>
       </Host>
