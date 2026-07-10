@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp
+  xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+  xsi:type="TaskPaneApp">
+
+  <Id>11111111-2222-3333-4444-555555555555</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Suite IA Pro</ProviderName>
+  <DefaultLocale>fr-FR</DefaultLocale>
+  <DisplayName DefaultValue="Suite IA Pro"/>
+  <Description DefaultValue="Complément Excel IA — Analyse financière, avis clients et gestion des stocks."/>
+  <IconUrl DefaultValue="https://localhost:3000/assets/finance-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/finance-80.png"/>
+  <SupportUrl DefaultValue="https://localhost:3000"/>
+
+  <AppDomains>
+    <AppDomain>https://localhost:3000</AppDomain>
+  </AppDomains>
+
+  <Hosts>
+    <Host Name="Workbook"/>
+  </Hosts>
+
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://localhost:3000/taskpane.html"/>
+  </DefaultSettings>
+
+  <Permissions>ReadWriteDocument</Permissions>
+
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_1">
+    <Hosts>
+      <Host xsi:type="Workbook">
+
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="GetStarted.Title"/>
+            <Description resid="GetStarted.Description"/>
+            <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/>
+          </GetStarted>
+
+          <FunctionFile resid="Commands.Url"/>
+
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabSuiteIAPro">
+              <Label resid="Tab.Label"/>
+
+              <Group id="GroupFinance">
+                <Label resid="Group.Finance.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="Icon.Finance.16"/>
+                  <bt:Image size="32" resid="Icon.Finance.32"/>
+                  <bt:Image size="80" resid="Icon.Finance.80"/>
+                </Icon>
+
+                <Control xsi:type="Button" id="BtnFinanceRatios">
+                  <Label resid="Btn.Finance.Ratios.Label"/>
+                  <Supertip>
+                    <Title resid="Btn.Finance.Ratios.Label"/>
+                    <Description resid="Btn.Finance.Ratios.Desc"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Finance.16"/>
+                    <bt:Image size="32" resid="Icon.Finance.32"/>
+                    <bt:Image size="80" resid="Icon.Finance.80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>TaskpaneFinanceRatios</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Finance.Ratios"/>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="BtnFinanceReport">
+                  <Label resid="Btn.Finance.Report.Label"/>
+                  <Supertip>
+                    <Title resid="Btn.Finance.Report.Label"/>
+                    <Description resid="Btn.Finance.Report.Desc"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Finance.16"/>
+                    <bt:Image size="32" resid="Icon.Finance.32"/>
+                    <bt:Image size="80" resid="Icon.Finance.80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>TaskpaneFinanceReport</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Finance.Report"/>
+                  </Action>
+                </Control>
+              </Group>
+
+              <Group id="GroupAvis">
+                <Label resid="Group.Avis.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="Icon.Avis.16"/>
+                  <bt:Image size="32" resid="Icon.Avis.32"/>
+                  <bt:Image size="80" resid="Icon.Avis.80"/>
+                </Icon>
+
+                <Control xsi:type="Button" id="BtnAvisSentiments">
+                  <Label resid="Btn.Avis.Sentiments.Label"/>
+                  <Supertip>
+                    <Title resid="Btn.Avis.Sentiments.Label"/>
+                    <Description resid="Btn.Avis.Sentiments.Desc"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Avis.16"/>
+                    <bt:Image size="32" resid="Icon.Avis.32"/>
+                    <bt:Image size="80" resid="Icon.Avis.80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>TaskpaneAvisSentiments</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Avis.Sentiments"/>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="BtnAvisReport">
+                  <Label resid="Btn.Avis.Report.Label"/>
+                  <Supertip>
+                    <Title resid="Btn.Avis.Report.Label"/>
+                    <Description resid="Btn.Avis.Report.Desc"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Avis.16"/>
+                    <bt:Image size="32" resid="Icon.Avis.32"/>
+                    <bt:Image size="80" resid="Icon.Avis.80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>TaskpaneAvisReport</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Avis.Report"/>
+                  </Action>
+                </Control>
+              </Group>
+
+              <Group id="GroupStocks">
+                <Label resid="Group.Stocks.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="Icon.Stocks.16"/>
+                  <bt:Image size="32" resid="Icon.Stocks.32"/>
+                  <bt:Image size="80" resid="Icon.Stocks.80"/>
+                </Icon>
+
+                <Control xsi:type="Button" id="BtnStocksWilson">
+                  <Label resid="Btn.Stocks.Wilson.Label"/>
+                  <Supertip>
+                    <Title resid="Btn.Stocks.Wilson.Label"/>
+                    <Description resid="Btn.Stocks.Wilson.Desc"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Stocks.16"/>
+                    <bt:Image size="32" resid="Icon.Stocks.32"/>
+                    <bt:Image size="80" resid="Icon.Stocks.80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>TaskpaneStocksWilson</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Stocks.Wilson"/>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="BtnStocksSecurity">
+                  <Label resid="Btn.Stocks.Security.Label"/>
+                  <Supertip>
+                    <Title resid="Btn.Stocks.Security.Label"/>
+                    <Description resid="Btn.Stocks.Security.Desc"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Stocks.16"/>
+                    <bt:Image size="32" resid="Icon.Stocks.32"/>
+                    <bt:Image size="80" resid="Icon.Stocks.80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>TaskpaneStocksSecurity</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Stocks.Security"/>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon.Finance.16" DefaultValue="https://localhost:3000/assets/finance-16.png"/>
+        <bt:Image id="Icon.Finance.32" DefaultValue="https://localhost:3000/assets/finance-32.png"/>
+        <bt:Image id="Icon.Finance.80" DefaultValue="https://localhost:3000/assets/finance-80.png"/>
+        <bt:Image id="Icon.Avis.16" DefaultValue="https://localhost:3000/assets/avis-16.png"/>
+        <bt:Image id="Icon.Avis.32" DefaultValue="https://localhost:3000/assets/avis-32.png"/>
+        <bt:Image id="Icon.Avis.80" DefaultValue="https://localhost:3000/assets/avis-80.png"/>
+        <bt:Image id="Icon.Stocks.16" DefaultValue="https://localhost:3000/assets/stocks-16.png"/>
+        <bt:Image id="Icon.Stocks.32" DefaultValue="https://localhost:3000/assets/stocks-32.png"/>
+        <bt:Image id="Icon.Stocks.80" DefaultValue="https://localhost:3000/assets/stocks-80.png"/>
+      </bt:Images>
+
+      <bt:Urls>
+        <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/commands.html"/>
+        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://localhost:3000"/>
+        <bt:Url id="Taskpane.Finance.Ratios" DefaultValue="https://localhost:3000/taskpane.html?module=finance&amp;action=ratios"/>
+        <bt:Url id="Taskpane.Finance.Report" DefaultValue="https://localhost:3000/taskpane.html?module=finance&amp;action=report"/>
+        <bt:Url id="Taskpane.Avis.Sentiments" DefaultValue="https://localhost:3000/taskpane.html?module=avis&amp;action=sentiments"/>
+        <bt:Url id="Taskpane.Avis.Report" DefaultValue="https://localhost:3000/taskpane.html?module=avis&amp;action=report"/>
+        <bt:Url id="Taskpane.Stocks.Wilson" DefaultValue="https://localhost:3000/taskpane.html?module=stocks&amp;action=wilson"/>
+        <bt:Url id="Taskpane.Stocks.Security" DefaultValue="https://localhost:3000/taskpane.html?module=stocks&amp;action=security"/>
+      </bt:Urls>
+
+      <bt:ShortStrings>
+        <bt:String id="GetStarted.Title" DefaultValue="Bienvenue dans Suite IA Pro"/>
+        <bt:String id="Tab.Label" DefaultValue="Suite IA Pro"/>
+        <bt:String id="Group.Finance.Label" DefaultValue="Analyse Financière"/>
+        <bt:String id="Group.Avis.Label" DefaultValue="Avis Clients"/>
+        <bt:String id="Group.Stocks.Label" DefaultValue="Gestion des Stocks"/>
+        <bt:String id="Btn.Finance.Ratios.Label" DefaultValue="Calculer Ratios"/>
+        <bt:String id="Btn.Finance.Report.Label" DefaultValue="Générer Rapport Complet"/>
+        <bt:String id="Btn.Avis.Sentiments.Label" DefaultValue="Analyser Sentiments"/>
+        <bt:String id="Btn.Avis.Report.Label" DefaultValue="Générer Rapport Client"/>
+        <bt:String id="Btn.Stocks.Wilson.Label" DefaultValue="Calculer Wilson"/>
+        <bt:String id="Btn.Stocks.Security.Label" DefaultValue="Niveau Sécurité"/>
+      </bt:ShortStrings>
+
+      <bt:LongStrings>
+        <bt:String id="GetStarted.Description" DefaultValue="Analysez vos données sans jamais écraser vos feuilles existantes."/>
+        <bt:String id="Btn.Finance.Ratios.Desc" DefaultValue="Calcule les ratios financiers dans une nouvelle feuille dédiée."/>
+        <bt:String id="Btn.Finance.Report.Desc" DefaultValue="Génère un rapport financier complet dans une nouvelle feuille."/>
+        <bt:String id="Btn.Avis.Sentiments.Desc" DefaultValue="Analyse les sentiments clients dans une nouvelle feuille dédiée."/>
+        <bt:String id="Btn.Avis.Report.Desc" DefaultValue="Génère un rapport client complet dans une nouvelle feuille."/>
+        <bt:String id="Btn.Stocks.Wilson.Desc" DefaultValue="Calcule la formule de Wilson dans une nouvelle feuille dédiée."/>
+        <bt:String id="Btn.Stocks.Security.Desc" DefaultValue="Détermine le niveau de sécurité des stocks dans une nouvelle feuille."/>
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>

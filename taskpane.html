@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Suite IA Pro</title>
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <link rel="stylesheet" href="taskpane.css"/>
+</head>
+<body>
+  <div id="app" class="app hidden">
+
+    <header class="header">
+      <div class="header-badge" id="module-badge">—</div>
+      <h1 class="header-title" id="module-title">Suite IA Pro</h1>
+      <p class="header-subtitle" id="module-subtitle">Chargement…</p>
+    </header>
+
+    <section class="tracker">
+      <h2 class="section-title">Suivi de l'analyse</h2>
+      <ol class="steps" id="steps-list"></ol>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </section>
+
+    <section class="lock-panel hidden" id="lock-panel">
+      <div class="lock-icon">🔒</div>
+      <h2>Module verrouillé</h2>
+      <p id="lock-message">
+        Ce module nécessite un abonnement actif. Passez à la formule Pro pour débloquer toutes les fonctionnalités.
+      </p>
+      <button class="btn btn-secondary" id="btn-upgrade">Voir les offres</button>
+    </section>
+
+    <section class="action-panel" id="action-panel">
+      <div class="action-info" id="action-info">
+        <span class="action-label" id="action-label">Action</span>
+        <p class="action-desc" id="action-desc"></p>
+      </div>
+
+      <button class="btn btn-primary" id="btn-generate">
+        Générer le rapport
+      </button>
+
+      <p class="safety-note">
+        ✓ Règle universelle : une <strong>nouvelle feuille</strong> sera créée.
+        Vos données existantes ne seront jamais modifiées.
+      </p>
+    </section>
+
+    <section class="status-log">
+      <p id="status-message" class="status-message">Prêt.</p>
+    </section>
+
+  </div>
+
+  <script src="taskpane.js"></script>
+</body>
+</html>

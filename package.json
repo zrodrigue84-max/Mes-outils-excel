@@ -1,0 +1,14 @@
+{
+  "name": "suite-ia-pro",
+  "version": "1.0.0",
+  "description": "Complément Excel Suite IA Pro",
+  "main": "taskpane.js",
+  "scripts": {
+    "start": "office-addin-debugging start manifest.xml desktop"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "office-addin-debugging": "latest",
+    "office-addin-manifest": "latest"
+  }
+}
