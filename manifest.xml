@@ -12,12 +12,12 @@
   <DefaultLocale>fr-FR</DefaultLocale>
   <DisplayName DefaultValue="Suite IA Pro"/>
   <Description DefaultValue="Complément Excel IA — Analyse financière, avis clients et gestion des stocks."/>
-  <IconUrl DefaultValue="https://localhost:3000/assets/finance-32.png"/>
-  <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/finance-80.png"/>
-  <SupportUrl DefaultValue="https://localhost:3000"/>
+  <IconUrl DefaultValue="https://mes-outils-excel.vercel.app/assets/finance-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://mes-outils-excel.vercel.app/assets/finance-80.png"/>
+  <SupportUrl DefaultValue="https://mes-outils-excel.vercel.app"/>
 
   <AppDomains>
-    <AppDomain>https://localhost:3000</AppDomain>
+    <AppDomain>https://mes-outils-excel.vercel.app</AppDomain>
   </AppDomains>
 
   <Hosts>
@@ -25,7 +25,7 @@
   </Hosts>
 
   <DefaultSettings>
-    <SourceLocation DefaultValue="https://localhost:3000/taskpane.html"/>
+    <SourceLocation DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html"/>
   </DefaultSettings>
 
   <Permissions>ReadWriteDocument</Permissions>
@@ -183,26 +183,26 @@
 
     <Resources>
       <bt:Images>
-        <bt:Image id="Icon.Finance.16" DefaultValue="https://localhost:3000/assets/finance-16.png"/>
-        <bt:Image id="Icon.Finance.32" DefaultValue="https://localhost:3000/assets/finance-32.png"/>
-        <bt:Image id="Icon.Finance.80" DefaultValue="https://localhost:3000/assets/finance-80.png"/>
-        <bt:Image id="Icon.Avis.16" DefaultValue="https://localhost:3000/assets/avis-16.png"/>
-        <bt:Image id="Icon.Avis.32" DefaultValue="https://localhost:3000/assets/avis-32.png"/>
-        <bt:Image id="Icon.Avis.80" DefaultValue="https://localhost:3000/assets/avis-80.png"/>
-        <bt:Image id="Icon.Stocks.16" DefaultValue="https://localhost:3000/assets/stocks-16.png"/>
-        <bt:Image id="Icon.Stocks.32" DefaultValue="https://localhost:3000/assets/stocks-32.png"/>
-        <bt:Image id="Icon.Stocks.80" DefaultValue="https://localhost:3000/assets/stocks-80.png"/>
+        <bt:Image id="Icon.Finance.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/finance-16.png"/>
+        <bt:Image id="Icon.Finance.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/finance-32.png"/>
+        <bt:Image id="Icon.Finance.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/finance-80.png"/>
+        <bt:Image id="Icon.Avis.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/avis-16.png"/>
+        <bt:Image id="Icon.Avis.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/avis-32.png"/>
+        <bt:Image id="Icon.Avis.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/avis-80.png"/>
+        <bt:Image id="Icon.Stocks.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/stocks-16.png"/>
+        <bt:Image id="Icon.Stocks.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/stocks-32.png"/>
+        <bt:Image id="Icon.Stocks.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/stocks-80.png"/>
       </bt:Images>
 
       <bt:Urls>
-        <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/commands.html"/>
-        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://localhost:3000"/>
-        <bt:Url id="Taskpane.Finance.Ratios" DefaultValue="https://localhost:3000/taskpane.html?module=finance&amp;action=ratios"/>
-        <bt:Url id="Taskpane.Finance.Report" DefaultValue="https://localhost:3000/taskpane.html?module=finance&amp;action=report"/>
-        <bt:Url id="Taskpane.Avis.Sentiments" DefaultValue="https://localhost:3000/taskpane.html?module=avis&amp;action=sentiments"/>
-        <bt:Url id="Taskpane.Avis.Report" DefaultValue="https://localhost:3000/taskpane.html?module=avis&amp;action=report"/>
-        <bt:Url id="Taskpane.Stocks.Wilson" DefaultValue="https://localhost:3000/taskpane.html?module=stocks&amp;action=wilson"/>
-        <bt:Url id="Taskpane.Stocks.Security" DefaultValue="https://localhost:3000/taskpane.html?module=stocks&amp;action=security"/>
+        <bt:Url id="Commands.Url" DefaultValue="https://mes-outils-excel.vercel.app/commands.html"/>
+        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://mes-outils-excel.vercel.app"/>
+        <bt:Url id="Taskpane.Finance.Ratios" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?module=finance&amp;action=ratios"/>
+        <bt:Url id="Taskpane.Finance.Report" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?module=finance&amp;action=report"/>
+        <bt:Url id="Taskpane.Avis.Sentiments" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?module=avis&amp;action=sentiments"/>
+        <bt:Url id="Taskpane.Avis.Report" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?module=avis&amp;action=report"/>
+        <bt:Url id="Taskpane.Stocks.Wilson" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?module=stocks&amp;action=wilson"/>
+        <bt:Url id="Taskpane.Stocks.Security" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?module=stocks&amp;action=security"/>
       </bt:Urls>
 
       <bt:ShortStrings>
