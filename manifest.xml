@@ -6,8 +6,8 @@
   xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
   xsi:type="TaskPaneApp">
 
-  <Id>11111111-2222-3333-4444-555555555555</Id>
-  <Version>1.0.0.0</Version>
+  <Id>11111111-2222-3333-4444-555555555556</Id>
+  <Version>1.0.0.1</Version>
   <ProviderName>Suite IA Pro</ProviderName>
   <DefaultLocale>fr-FR</DefaultLocale>
   <DisplayName DefaultValue="Suite IA Pro"/>
