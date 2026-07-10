@@ -33,15 +33,12 @@
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_1">
     <Hosts>
       <Host xsi:type="Workbook">
-
         <DesktopFormFactor>
           <GetStarted>
             <Title resid="GetStarted.Title"/>
             <Description resid="GetStarted.Description"/>
             <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/>
           </GetStarted>
-
-          <FunctionFile resid="Commands.Url"/>
 
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
             <OfficeTab id="TabSuiteIAPro">
@@ -195,7 +192,6 @@
       </bt:Images>
 
       <bt:Urls>
-        <bt:Url id="Commands.Url" DefaultValue="https://mes-outils-excel.vercel.app/commands.html"/>
         <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://mes-outils-excel.vercel.app"/>
         <bt:Url id="Taskpane.Finance.Ratios" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?module=finance&amp;action=ratios"/>
         <bt:Url id="Taskpane.Finance.Report" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?module=finance&amp;action=report"/>
