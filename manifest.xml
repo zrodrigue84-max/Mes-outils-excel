@@ -7,11 +7,11 @@
   xsi:type="TaskPaneApp">
 
   <Id>11111111-2222-3333-4444-555555555556</Id>
-  <Version>1.0.0.2</Version>
+  <Version>2.0.0.0</Version>
   <ProviderName>Suite IA Pro</ProviderName>
   <DefaultLocale>fr-FR</DefaultLocale>
   <DisplayName DefaultValue="Suite IA Pro"/>
-  <Description DefaultValue="Complément Excel IA — Analyse financière, avis clients et gestion des stocks."/>
+  <Description DefaultValue="Complément Excel IA — Analyse financière, avis clients et nettoyage de données."/>
   <IconUrl DefaultValue="https://mes-outils-excel.vercel.app/assets/finance-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://mes-outils-excel.vercel.app/assets/finance-80.png"/>
   <SupportUrl DefaultValue="https://mes-outils-excel.vercel.app"/>
@@ -44,6 +44,7 @@
             <CustomTab id="TabSuiteIAPro">
               <Label resid="Tab.Label"/>
 
+              <!-- ================= MODULE 1 : ANALYSE FINANCIÈRE ================= -->
               <Group id="GroupFinance">
                 <Label resid="Group.Finance.Label"/>
                 <Icon>
@@ -52,11 +53,11 @@
                   <bt:Image size="80" resid="Icon.Finance.80"/>
                 </Icon>
 
-                <Control xsi:type="Button" id="BtnFinanceRatios">
-                  <Label resid="Btn.Finance.Ratios.Label"/>
+                <Control xsi:type="Button" id="BtnFinanceOuvrir">
+                  <Label resid="Btn.Finance.Ouvrir.Label"/>
                   <Supertip>
-                    <Title resid="Btn.Finance.Ratios.Label"/>
-                    <Description resid="Btn.Finance.Ratios.Desc"/>
+                    <Title resid="Btn.Finance.Ouvrir.Label"/>
+                    <Description resid="Btn.Finance.Ouvrir.Desc"/>
                   </Supertip>
                   <Icon>
                     <bt:Image size="16" resid="Icon.Finance.16"/>
@@ -64,27 +65,12 @@
                     <bt:Image size="80" resid="Icon.Finance.80"/>
                   </Icon>
                   <Action xsi:type="ShowTaskpane">
-                    <SourceLocation resid="Taskpane.Finance.Ratios"/>
-                  </Action>
-                </Control>
-
-                <Control xsi:type="Button" id="BtnFinanceReport">
-                  <Label resid="Btn.Finance.Report.Label"/>
-                  <Supertip>
-                    <Title resid="Btn.Finance.Report.Label"/>
-                    <Description resid="Btn.Finance.Report.Desc"/>
-                  </Supertip>
-                  <Icon>
-                    <bt:Image size="16" resid="Icon.Finance.16"/>
-                    <bt:Image size="32" resid="Icon.Finance.32"/>
-                    <bt:Image size="80" resid="Icon.Finance.80"/>
-                  </Icon>
-                  <Action xsi:type="ShowTaskpane">
-                    <SourceLocation resid="Taskpane.Finance.Report"/>
+                    <SourceLocation resid="Taskpane.Finance"/>
                   </Action>
                 </Control>
               </Group>
 
+              <!-- ================= MODULE 2 : AVIS CLIENTS ================= -->
               <Group id="GroupAvis">
                 <Label resid="Group.Avis.Label"/>
                 <Icon>
@@ -93,11 +79,11 @@
                   <bt:Image size="80" resid="Icon.Avis.80"/>
                 </Icon>
 
-                <Control xsi:type="Button" id="BtnAvisSentiments">
-                  <Label resid="Btn.Avis.Sentiments.Label"/>
+                <Control xsi:type="Button" id="BtnAvisOuvrir">
+                  <Label resid="Btn.Avis.Ouvrir.Label"/>
                   <Supertip>
-                    <Title resid="Btn.Avis.Sentiments.Label"/>
-                    <Description resid="Btn.Avis.Sentiments.Desc"/>
+                    <Title resid="Btn.Avis.Ouvrir.Label"/>
+                    <Description resid="Btn.Avis.Ouvrir.Desc"/>
                   </Supertip>
                   <Icon>
                     <bt:Image size="16" resid="Icon.Avis.16"/>
@@ -105,67 +91,37 @@
                     <bt:Image size="80" resid="Icon.Avis.80"/>
                   </Icon>
                   <Action xsi:type="ShowTaskpane">
-                    <SourceLocation resid="Taskpane.Avis.Sentiments"/>
-                  </Action>
-                </Control>
-
-                <Control xsi:type="Button" id="BtnAvisReport">
-                  <Label resid="Btn.Avis.Report.Label"/>
-                  <Supertip>
-                    <Title resid="Btn.Avis.Report.Label"/>
-                    <Description resid="Btn.Avis.Report.Desc"/>
-                  </Supertip>
-                  <Icon>
-                    <bt:Image size="16" resid="Icon.Avis.16"/>
-                    <bt:Image size="32" resid="Icon.Avis.32"/>
-                    <bt:Image size="80" resid="Icon.Avis.80"/>
-                  </Icon>
-                  <Action xsi:type="ShowTaskpane">
-                    <SourceLocation resid="Taskpane.Avis.Report"/>
+                    <SourceLocation resid="Taskpane.Avis"/>
                   </Action>
                 </Control>
               </Group>
 
-              <Group id="GroupStocks">
-                <Label resid="Group.Stocks.Label"/>
+              <!-- ================= MODULE 3 : NETTOYAGE DE DONNÉES ================= -->
+              <Group id="GroupNettoyage">
+                <Label resid="Group.Nettoyage.Label"/>
                 <Icon>
-                  <bt:Image size="16" resid="Icon.Stocks.16"/>
-                  <bt:Image size="32" resid="Icon.Stocks.32"/>
-                  <bt:Image size="80" resid="Icon.Stocks.80"/>
+                  <bt:Image size="16" resid="Icon.Nettoyage.16"/>
+                  <bt:Image size="32" resid="Icon.Nettoyage.32"/>
+                  <bt:Image size="80" resid="Icon.Nettoyage.80"/>
                 </Icon>
 
-                <Control xsi:type="Button" id="BtnStocksWilson">
-                  <Label resid="Btn.Stocks.Wilson.Label"/>
+                <Control xsi:type="Button" id="BtnNettoyageOuvrir">
+                  <Label resid="Btn.Nettoyage.Ouvrir.Label"/>
                   <Supertip>
-                    <Title resid="Btn.Stocks.Wilson.Label"/>
-                    <Description resid="Btn.Stocks.Wilson.Desc"/>
+                    <Title resid="Btn.Nettoyage.Ouvrir.Label"/>
+                    <Description resid="Btn.Nettoyage.Ouvrir.Desc"/>
                   </Supertip>
                   <Icon>
-                    <bt:Image size="16" resid="Icon.Stocks.16"/>
-                    <bt:Image size="32" resid="Icon.Stocks.32"/>
-                    <bt:Image size="80" resid="Icon.Stocks.80"/>
+                    <bt:Image size="16" resid="Icon.Nettoyage.16"/>
+                    <bt:Image size="32" resid="Icon.Nettoyage.32"/>
+                    <bt:Image size="80" resid="Icon.Nettoyage.80"/>
                   </Icon>
                   <Action xsi:type="ShowTaskpane">
-                    <SourceLocation resid="Taskpane.Stocks.Wilson"/>
-                  </Action>
-                </Control>
-
-                <Control xsi:type="Button" id="BtnStocksSecurity">
-                  <Label resid="Btn.Stocks.Security.Label"/>
-                  <Supertip>
-                    <Title resid="Btn.Stocks.Security.Label"/>
-                    <Description resid="Btn.Stocks.Security.Desc"/>
-                  </Supertip>
-                  <Icon>
-                    <bt:Image size="16" resid="Icon.Stocks.16"/>
-                    <bt:Image size="32" resid="Icon.Stocks.32"/>
-                    <bt:Image size="80" resid="Icon.Stocks.80"/>
-                  </Icon>
-                  <Action xsi:type="ShowTaskpane">
-                    <SourceLocation resid="Taskpane.Stocks.Security"/>
+                    <SourceLocation resid="Taskpane.Nettoyage"/>
                   </Action>
                 </Control>
               </Group>
+
             </CustomTab>
           </ExtensionPoint>
         </DesktopFormFactor>
@@ -177,46 +133,47 @@
         <bt:Image id="Icon.Finance.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/finance-16.png"/>
         <bt:Image id="Icon.Finance.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/finance-32.png"/>
         <bt:Image id="Icon.Finance.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/finance-80.png"/>
+
         <bt:Image id="Icon.Avis.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/avis-16.png"/>
         <bt:Image id="Icon.Avis.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/avis-32.png"/>
         <bt:Image id="Icon.Avis.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/avis-80.png"/>
-        <bt:Image id="Icon.Stocks.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/stocks-16.png"/>
-        <bt:Image id="Icon.Stocks.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/stocks-32.png"/>
-        <bt:Image id="Icon.Stocks.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/stocks-80.png"/>
+
+        <bt:Image id="Icon.Nettoyage.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/nettoyage-16.png"/>
+        <bt:Image id="Icon.Nettoyage.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/nettoyage-32.png"/>
+        <bt:Image id="Icon.Nettoyage.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/nettoyage-80.png"/>
       </bt:Images>
 
       <bt:Urls>
         <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://mes-outils-excel.vercel.app"/>
-        <bt:Url id="Taskpane.Finance.Ratios" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?module=finance&amp;action=ratios"/>
-        <bt:Url id="Taskpane.Finance.Report" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?module=finance&amp;action=report"/>
-        <bt:Url id="Taskpane.Avis.Sentiments" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?module=avis&amp;action=sentiments"/>
-        <bt:Url id="Taskpane.Avis.Report" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?module=avis&amp;action=report"/>
-        <bt:Url id="Taskpane.Stocks.Wilson" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?module=stocks&amp;action=wilson"/>
-        <bt:Url id="Taskpane.Stocks.Security" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?module=stocks&amp;action=security"/>
+
+        <!-- Chaque module pointe vers UNE SEULE URL de taskpane.
+             La navigation interne (Configuration / Résultats, onglets,
+             sélecteurs de vue, etc.) est gérée en JS côté client à
+             l'intérieur du taskpane, PAS par des URLs de ruban séparées. -->
+        <bt:Url id="Taskpane.Finance" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?module=finance"/>
+        <bt:Url id="Taskpane.Avis" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?module=avis"/>
+        <bt:Url id="Taskpane.Nettoyage" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?module=nettoyage"/>
       </bt:Urls>
 
       <bt:ShortStrings>
         <bt:String id="GetStarted.Title" DefaultValue="Bienvenue dans Suite IA Pro"/>
         <bt:String id="Tab.Label" DefaultValue="Suite IA Pro"/>
+
         <bt:String id="Group.Finance.Label" DefaultValue="Analyse Financière"/>
         <bt:String id="Group.Avis.Label" DefaultValue="Avis Clients"/>
-        <bt:String id="Group.Stocks.Label" DefaultValue="Gestion des Stocks"/>
-        <bt:String id="Btn.Finance.Ratios.Label" DefaultValue="Calculer Ratios"/>
-        <bt:String id="Btn.Finance.Report.Label" DefaultValue="Générer Rapport Complet"/>
-        <bt:String id="Btn.Avis.Sentiments.Label" DefaultValue="Analyser Sentiments"/>
-        <bt:String id="Btn.Avis.Report.Label" DefaultValue="Générer Rapport Client"/>
-        <bt:String id="Btn.Stocks.Wilson.Label" DefaultValue="Calculer Wilson"/>
-        <bt:String id="Btn.Stocks.Security.Label" DefaultValue="Niveau Sécurité"/>
+        <bt:String id="Group.Nettoyage.Label" DefaultValue="Nettoyage de Données"/>
+
+        <bt:String id="Btn.Finance.Ouvrir.Label" DefaultValue="Analyse Financière"/>
+        <bt:String id="Btn.Avis.Ouvrir.Label" DefaultValue="Avis Clients"/>
+        <bt:String id="Btn.Nettoyage.Ouvrir.Label" DefaultValue="Nettoyage de Données"/>
       </bt:ShortStrings>
 
       <bt:LongStrings>
         <bt:String id="GetStarted.Description" DefaultValue="Analysez vos données sans jamais écraser vos feuilles existantes."/>
-        <bt:String id="Btn.Finance.Ratios.Desc" DefaultValue="Calcule les ratios financiers dans une nouvelle feuille dédiée."/>
-        <bt:String id="Btn.Finance.Report.Desc" DefaultValue="Génère un rapport financier complet dans une nouvelle feuille."/>
-        <bt:String id="Btn.Avis.Sentiments.Desc" DefaultValue="Analyse les sentiments clients dans une nouvelle feuille dédiée."/>
-        <bt:String id="Btn.Avis.Report.Desc" DefaultValue="Génère un rapport client complet dans une nouvelle feuille."/>
-        <bt:String id="Btn.Stocks.Wilson.Desc" DefaultValue="Calcule la formule de Wilson dans une nouvelle feuille dédiée."/>
-        <bt:String id="Btn.Stocks.Security.Desc" DefaultValue="Détermine le niveau de sécurité des stocks dans une nouvelle feuille."/>
+
+        <bt:String id="Btn.Finance.Ouvrir.Desc" DefaultValue="Ouvre l'outil d'analyse financière complète : ratios, score de santé, comparaison sectorielle et recommandations, générés dans une nouvelle feuille."/>
+        <bt:String id="Btn.Avis.Ouvrir.Desc" DefaultValue="Ouvre l'outil d'analyse des avis et sentiments clients : classement par thème, tendances temporelles et recommandations priorisées."/>
+        <bt:String id="Btn.Nettoyage.Ouvrir.Desc" DefaultValue="Ouvre l'outil de nettoyage de données en un clic : doublons, formats, valeurs manquantes et aberrantes, sans jamais toucher à votre feuille source."/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
