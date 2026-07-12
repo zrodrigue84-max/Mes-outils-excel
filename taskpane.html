@@ -7,7 +7,7 @@
 
     <!-- Office.js -->
     <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
-    <!-- Chart.js pour les graphiques (utile pour les autres modules) -->
+    <!-- Chart.js pour les graphiques -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
@@ -24,7 +24,7 @@
             color: #333;
         }
 
-        /* --- BARRE D'OUTILS INTERNE (5 boutons en haut) --- */
+        /* --- BARRE D'OUTILS INTERNE (5 boutons) --- */
         #ribbon-bar {
             display: flex;
             flex-wrap: wrap;
@@ -69,6 +69,7 @@
             padding: 16px;
             border-radius: 6px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            margin-top: 16px;
         }
 
         .phase h3 {
@@ -79,12 +80,26 @@
             padding-bottom: 8px;
         }
 
+        /* --- ZONE D'OPTIONS (grisée par défaut) --- */
+        #options-zone {
+            margin-top: 16px;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            background-color: #fafafa;
+            transition: opacity 0.3s;
+        }
+        #options-zone.disabled-zone {
+            opacity: 0.4;
+            pointer-events: none;
+            user-select: none;
+        }
         .form-group {
-            margin-top: 14px;
+            margin-top: 10px;
         }
         .form-group label {
             display: block;
-            margin-top: 8px;
+            margin-top: 6px;
             font-weight: 500;
         }
         .form-group label input[type="checkbox"] {
@@ -97,6 +112,7 @@
             border: 1px solid #ccc;
         }
 
+        /* --- BOUTON SÉLECTION --- */
         #btnSelectRange {
             background-color: #2b5797;
             border: none;
@@ -105,12 +121,26 @@
             border-radius: 4px;
             font-size: 14px;
             cursor: pointer;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
         #btnSelectRange:hover {
             background-color: #1a3d6b;
         }
 
+        /* --- MESSAGE D'ATTENTE --- */
+        #waiting-message {
+            display: none;
+            margin: 12px 0;
+            padding: 12px;
+            background-color: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 4px;
+            color: #856404;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* --- APERÇUS --- */
         #data-preview,
         #cleaned-preview {
             margin-top: 10px;
@@ -122,6 +152,7 @@
             min-height: 40px;
         }
 
+        /* --- CHARGEMENT --- */
         #loading {
             margin-top: 16px;
             padding: 12px;
@@ -131,8 +162,40 @@
             color: #856404;
             font-weight: 500;
             text-align: center;
+            display: none;
         }
 
+        /* --- BOUTONS D'ACTION (dans options-zone) --- */
+        .action-buttons-inline {
+            margin-top: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .action-buttons-inline button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        #btnDeepClean {
+            background-color: #fd7e14;
+            color: #fff;
+        }
+        #btnDeepClean:hover {
+            background-color: #e06b0a;
+        }
+        #btnRunClean {
+            background-color: #28a745;
+            color: #fff;
+        }
+        #btnRunClean:hover {
+            background-color: #218838;
+        }
+
+        /* --- BOUTONS D'ACTION (en bas des résultats) --- */
         .action-buttons {
             margin-top: 16px;
             display: flex;
@@ -162,6 +225,7 @@
             background-color: #5a6268;
         }
 
+        /* --- CONTENU DES ONGLETS --- */
         #tab-content {
             margin: 12px 0;
             padding: 10px;
@@ -183,10 +247,12 @@
                 font-size: 12px;
                 padding: 4px 10px;
             }
-            .action-buttons {
+            .action-buttons,
+            .action-buttons-inline {
                 flex-direction: column;
             }
-            .action-buttons button {
+            .action-buttons button,
+            .action-buttons-inline button {
                 width: 100%;
             }
         }
@@ -198,7 +264,7 @@
     <!-- BARRE D'OUTILS INTERNE (5 boutons)            -->
     <!-- ============================================== -->
     <div id="ribbon-bar">
-        <button id="btnRun">🚀 Lancer l'analyse IA</button>
+        <button id="btnRun">🧹 Nettoyage IA</button>
         <button id="btnTemplate">📥 Télécharger modèle</button>
         <button id="btnHowTo">❓ Comment ça marche</button>
         <button id="btnPrivacy">🔒 Confidentialité</button>
@@ -209,37 +275,51 @@
     <!-- PHASE CONFIGURATION (visible par défaut)       -->
     <!-- ============================================== -->
     <div id="config-phase" class="phase">
-        <h3>⚙️ Configuration</h3>
+        <h3>⚙️ Configuration du nettoyage</h3>
 
+        <!-- Bouton de sélection -->
         <button id="btnSelectRange">📊 Sélectionner la plage de données</button>
+
+        <!-- Message d'attente -->
+        <div id="waiting-message">
+            ⏳ Sélectionnez une plage dans votre feuille Excel pour continuer.
+        </div>
 
         <!-- Aperçu des données brutes -->
         <div id="data-preview">
             <em style="color:#888;">Aucune plage sélectionnée pour l'instant.</em>
         </div>
 
-        <!-- Options de nettoyage -->
-        <div class="form-group">
-            <label>
-                <input type="checkbox" id="chkDuplicates" /> Supprimer les doublons
-            </label>
-            <label>
-                <input type="checkbox" id="chkFormats" /> Corriger les formats (dates, nombres)
-            </label>
-            <label>
-                Traiter les valeurs manquantes :
-                <select id="selectMissing">
-                    <option value="none">Ignorer</option>
-                    <option value="delete">Supprimer la ligne</option>
-                    <option value="mean">Remplacer par la moyenne</option>
-                    <option value="fixed">Remplacer par une valeur fixe</option>
-                    <option value="ai">Laisser l'IA décider</option>
-                </select>
-            </label>
+        <!-- ZONE D'OPTIONS (grisée par défaut) -->
+        <div id="options-zone" class="disabled-zone">
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="chkDuplicates" /> Supprimer les doublons
+                </label>
+                <label>
+                    <input type="checkbox" id="chkFormats" /> Corriger les formats (dates, nombres)
+                </label>
+                <label>
+                    Traiter les valeurs manquantes :
+                    <select id="selectMissing">
+                        <option value="none">Ignorer</option>
+                        <option value="delete">Supprimer la ligne</option>
+                        <option value="mean">Remplacer par la moyenne</option>
+                        <option value="fixed">Remplacer par une valeur fixe</option>
+                        <option value="ai">Laisser l'IA décider</option>
+                    </select>
+                </label>
+            </div>
+
+            <!-- Boutons d'action dans la zone options -->
+            <div class="action-buttons-inline">
+                <button id="btnDeepClean">🧹 Nettoyage approfondi</button>
+                <button id="btnRunClean">▶️ Lancer le nettoyage</button>
+            </div>
         </div>
 
         <!-- Indicateur de chargement -->
-        <div id="loading" style="display:none;">
+        <div id="loading">
             ⏳ Traitement en cours... Veuillez patienter.
         </div>
     </div>
@@ -248,9 +328,9 @@
     <!-- PHASE RÉSULTATS (cachée par défaut)            -->
     <!-- ============================================== -->
     <div id="results-phase" class="phase" style="display:none;">
-        <h3>📊 Résultats de l'analyse</h3>
+        <h3>📊 Résultats du nettoyage</h3>
 
-        <!-- Contenu principal des résultats (rempli par JS) -->
+        <!-- Contenu principal des résultats -->
         <div id="tab-content">
             <!-- Sera injecté par showResultsPhase() -->
         </div>
