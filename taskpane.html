@@ -107,9 +107,6 @@
             margin-top: 8px;
             font-weight: 500;
         }
-        .form-group label input[type="checkbox"] {
-            margin-right: 8px;
-        }
         .form-group select {
             margin-left: 6px;
             padding: 4px 8px;
@@ -177,31 +174,19 @@
             background-color: #5a6268;
         }
 
-        /* --- BOUTONS DANS LA ZONE OPTIONS --- */
-        .options-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+        /* --- BOUTON DANS LA ZONE OPTIONS (unique) --- */
+        .options-actions {
             margin-top: 16px;
-        }
-        .options-buttons button {
-            padding: 8px 20px;
-            border: none;
-            border-radius: 4px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        #btnDeepClean {
-            background-color: #fd7e14;
-            color: #fff;
-        }
-        #btnDeepClean:hover {
-            background-color: #e06b0a;
         }
         #btnRunClean {
             background-color: #0078d4;
             color: #fff;
+            border: none;
+            padding: 8px 24px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
         }
         #btnRunClean:hover {
             background-color: #106ebe;
@@ -269,10 +254,10 @@
             .action-buttons button {
                 width: 100%;
             }
-            .options-buttons {
-                flex-direction: column;
+            .options-actions {
+                width: 100%;
             }
-            .options-buttons button {
+            #btnRunClean {
                 width: 100%;
             }
         }
@@ -316,26 +301,17 @@
 
             <div class="form-group">
                 <label>
-                    <input type="checkbox" id="chkDuplicates" /> Supprimer les doublons
-                </label>
-                <label>
-                    <input type="checkbox" id="chkFormats" /> Corriger les formats (dates, nombres)
-                </label>
-                <label>
                     Traiter les valeurs manquantes :
                     <select id="selectMissing">
-                        <option value="none">Ignorer</option>
+                        <option value="ignore">Ignorer les valeurs manquantes</option>
                         <option value="delete">Supprimer la ligne</option>
-                        <option value="mean">Remplacer par la moyenne</option>
-                        <option value="fixed">Remplacer par une valeur fixe</option>
-                        <option value="ai">Laisser l'IA décider</option>
+                        <option value="mark">Marquer comme "Manquant"</option>
                     </select>
                 </label>
             </div>
 
-            <!-- Boutons d'action dans la zone options -->
-            <div class="options-buttons">
-                <button id="btnDeepClean">🧹 Nettoyage approfondi</button>
+            <!-- Bouton d'action unique -->
+            <div class="options-actions">
                 <button id="btnRunClean">▶️ Lancer le nettoyage</button>
             </div>
         </div>
@@ -370,9 +346,9 @@
     </div>
 
     <!-- ============================================== -->
-    <!-- CHARGEMENT DU SCRIPT PRINCIPAL                 -->
+    <!-- CHARGEMENT DU SCRIPT PRINCIPAL (cache-buster)  -->
     <!-- ============================================== -->
-    <script src="taskpane.js"></script>
+    <script src="taskpane.js?v=2"></script>
 
 </body>
 </html>
