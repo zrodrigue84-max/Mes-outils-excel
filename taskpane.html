@@ -1,60 +1,276 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Suite IA Pro</title>
-  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
-  <link rel="stylesheet" href="taskpane.css"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Suite IA Pro</title>
+
+    <!-- Office.js -->
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <!-- Chart.js pour les graphiques (utile pour les autres modules) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            padding: 12px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* --- BARRE D'OUTILS INTERNE (5 boutons en haut) --- */
+        #ribbon-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            background-color: #fff;
+            padding: 10px 12px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        #ribbon-bar button {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 6px 14px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            white-space: nowrap;
+        }
+        #ribbon-bar button:hover {
+            background-color: #e0e0e0;
+        }
+        #ribbon-bar button:active {
+            transform: scale(0.97);
+        }
+        #ribbon-bar button#btnRun {
+            background-color: #0078d4;
+            border-color: #0078d4;
+            color: #fff;
+            font-weight: 600;
+        }
+        #ribbon-bar button#btnRun:hover {
+            background-color: #106ebe;
+        }
+
+        /* --- ZONES DE CONTENU --- */
+        .phase {
+            background-color: #fff;
+            padding: 16px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .phase h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        .form-group {
+            margin-top: 14px;
+        }
+        .form-group label {
+            display: block;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .form-group label input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        .form-group select {
+            margin-left: 6px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        #btnSelectRange {
+            background-color: #2b5797;
+            border: none;
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-bottom: 12px;
+        }
+        #btnSelectRange:hover {
+            background-color: #1a3d6b;
+        }
+
+        #data-preview,
+        #cleaned-preview {
+            margin-top: 10px;
+            overflow-x: auto;
+            background-color: #fafafa;
+            padding: 6px;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+            min-height: 40px;
+        }
+
+        #loading {
+            margin-top: 16px;
+            padding: 12px;
+            background-color: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 4px;
+            color: #856404;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .action-buttons {
+            margin-top: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .action-buttons button {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        #btnExport {
+            background-color: #28a745;
+            color: #fff;
+        }
+        #btnExport:hover {
+            background-color: #218838;
+        }
+        #btnNewAnalysis {
+            background-color: #6c757d;
+            color: #fff;
+        }
+        #btnNewAnalysis:hover {
+            background-color: #5a6268;
+        }
+
+        #tab-content {
+            margin: 12px 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            border: 1px solid #e9ecef;
+        }
+        #tab-content ul {
+            padding-left: 20px;
+            margin: 8px 0;
+        }
+        #tab-content li {
+            margin: 4px 0;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 600px) {
+            #ribbon-bar button {
+                font-size: 12px;
+                padding: 4px 10px;
+            }
+            .action-buttons {
+                flex-direction: column;
+            }
+            .action-buttons button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div id="app" class="app hidden">
 
-    <header class="header">
-      <div class="header-badge" id="module-badge">—</div>
-      <h1 class="header-title" id="module-title">Suite IA Pro</h1>
-      <p class="header-subtitle" id="module-subtitle">Chargement…</p>
-    </header>
+    <!-- ============================================== -->
+    <!-- BARRE D'OUTILS INTERNE (5 boutons)            -->
+    <!-- ============================================== -->
+    <div id="ribbon-bar">
+        <button id="btnRun">🚀 Lancer l'analyse IA</button>
+        <button id="btnTemplate">📥 Télécharger modèle</button>
+        <button id="btnHowTo">❓ Comment ça marche</button>
+        <button id="btnPrivacy">🔒 Confidentialité</button>
+        <button id="btnFeedback">💬 Feedback</button>
+    </div>
 
-    <section class="tracker">
-      <h2 class="section-title">Suivi de l'analyse</h2>
-      <ol class="steps" id="steps-list"></ol>
-      <div class="progress-bar">
-        <div class="progress-fill" id="progress-fill"></div>
-      </div>
-    </section>
+    <!-- ============================================== -->
+    <!-- PHASE CONFIGURATION (visible par défaut)       -->
+    <!-- ============================================== -->
+    <div id="config-phase" class="phase">
+        <h3>⚙️ Configuration</h3>
 
-    <section class="lock-panel hidden" id="lock-panel">
-      <div class="lock-icon">🔒</div>
-      <h2>Module verrouillé</h2>
-      <p id="lock-message">
-        Ce module nécessite un abonnement actif. Passez à la formule Pro pour débloquer toutes les fonctionnalités.
-      </p>
-      <button class="btn btn-secondary" id="btn-upgrade">Voir les offres</button>
-    </section>
+        <button id="btnSelectRange">📊 Sélectionner la plage de données</button>
 
-    <section class="action-panel" id="action-panel">
-      <div class="action-info" id="action-info">
-        <span class="action-label" id="action-label">Action</span>
-        <p class="action-desc" id="action-desc"></p>
-      </div>
+        <!-- Aperçu des données brutes -->
+        <div id="data-preview">
+            <em style="color:#888;">Aucune plage sélectionnée pour l'instant.</em>
+        </div>
 
-      <button class="btn btn-primary" id="btn-generate">
-        Générer le rapport
-      </button>
+        <!-- Options de nettoyage -->
+        <div class="form-group">
+            <label>
+                <input type="checkbox" id="chkDuplicates" /> Supprimer les doublons
+            </label>
+            <label>
+                <input type="checkbox" id="chkFormats" /> Corriger les formats (dates, nombres)
+            </label>
+            <label>
+                Traiter les valeurs manquantes :
+                <select id="selectMissing">
+                    <option value="none">Ignorer</option>
+                    <option value="delete">Supprimer la ligne</option>
+                    <option value="mean">Remplacer par la moyenne</option>
+                    <option value="fixed">Remplacer par une valeur fixe</option>
+                    <option value="ai">Laisser l'IA décider</option>
+                </select>
+            </label>
+        </div>
 
-      <p class="safety-note">
-        ✓ Règle universelle : une <strong>nouvelle feuille</strong> sera créée.
-        Vos données existantes ne seront jamais modifiées.
-      </p>
-    </section>
+        <!-- Indicateur de chargement -->
+        <div id="loading" style="display:none;">
+            ⏳ Traitement en cours... Veuillez patienter.
+        </div>
+    </div>
 
-    <section class="status-log">
-      <p id="status-message" class="status-message">Prêt.</p>
-    </section>
+    <!-- ============================================== -->
+    <!-- PHASE RÉSULTATS (cachée par défaut)            -->
+    <!-- ============================================== -->
+    <div id="results-phase" class="phase" style="display:none;">
+        <h3>📊 Résultats de l'analyse</h3>
 
-  </div>
+        <!-- Contenu principal des résultats (rempli par JS) -->
+        <div id="tab-content">
+            <!-- Sera injecté par showResultsPhase() -->
+        </div>
 
-  <script src="taskpane.js"></script>
+        <!-- Aperçu des données nettoyées -->
+        <div id="cleaned-preview">
+            <em style="color:#888;">En attente des données nettoyées...</em>
+        </div>
+
+        <!-- Boutons d'action en bas -->
+        <div class="action-buttons">
+            <button id="btnExport">📤 Exporter vers une nouvelle feuille</button>
+            <button id="btnNewAnalysis">🔄 Nouvelle analyse</button>
+        </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- CHARGEMENT DU SCRIPT PRINCIPAL                 -->
+    <!-- ============================================== -->
+    <script src="taskpane.js"></script>
+
 </body>
 </html>
