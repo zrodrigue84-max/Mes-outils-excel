@@ -7,101 +7,39 @@ function getModule() {
 }
 const currentModule = getModule();
 
-// --- 2. MISE À JOUR DES LIBELLÉS (pour le bouton de la barre) ---
+// --- 2. RÉFÉRENCE À L'ÉCOUTEUR DE SÉLECTION ---
+let selectionHandler = null; // Pour pouvoir le retirer plus tard
+
+// --- 3. MISE À JOUR DES LIBELLÉS ---
 function updateLabels() {
-  const btnRun = document.getElementById('btnRun');
   if (currentModule === 'nettoyage') {
-    btnRun.textContent = '🧹 Nettoyage IA';
+    document.getElementById('btnRun').textContent = '🧹 Lancer le nettoyage IA';
   } else if (currentModule === 'avis') {
-    btnRun.textContent = '📊 Analyser les avis';
+    document.getElementById('btnRun').textContent = '📊 Analyser les avis';
   } else {
-    btnRun.textContent = '📈 Analyse financière';
+    document.getElementById('btnRun').textContent = '📈 Lancer l\'analyse financière';
   }
 }
 
-// --- 3. SÉLECTION DE PLAGE AVEC ÉCOUTEUR D'ÉVÉNEMENT ---
-function selectRange() {
-  // Griser la zone des options
-  const optionsZone = document.getElementById('options-zone');
-  if (optionsZone) {
-    optionsZone.classList.add('disabled-zone');
+// --- 4. RÉCUPÉRER LES INFOS DE LA PLAGE (adresse, dimensions) ---
+async function getRangeInfo() {
+  let info = { address: '', rowCount: 0, colCount: 0 };
+  try {
+    await Excel.run(async (context) => {
+      const range = context.workbook.getSelectedRange();
+      range.load('address, rowCount, columnCount');
+      await context.sync();
+      info.address = range.address;
+      info.rowCount = range.rowCount;
+      info.colCount = range.columnCount;
+    });
+  } catch (error) {
+    console.error('Erreur lors de la récupération des infos de plage:', error);
   }
-  // Afficher le message d'attente
-  const waitingMsg = document.getElementById('waiting-message');
-  if (waitingMsg) {
-    waitingMsg.style.display = 'block';
-  }
-
-  // Ajouter l'écouteur d'événement de changement de sélection
-  Office.context.document.addHandlerAsync(
-    Office.EventType.DocumentSelectionChanged,
-    onSelectionMade,
-    function (asyncResult) {
-      if (asyncResult.status !== Office.AsyncResultStatus.Succeeded) {
-        console.error('Erreur lors de l\'ajout de l\'écouteur :', asyncResult.error.message);
-        alert('Impossible de détecter la sélection. Veuillez réessayer.');
-        // Réactiver la zone en cas d'erreur
-        if (optionsZone) {
-          optionsZone.classList.remove('disabled-zone');
-        }
-        if (waitingMsg) {
-          waitingMsg.style.display = 'none';
-        }
-      }
-    }
-  );
+  return info;
 }
 
-// --- 4. FONCTION APPELÉE LORS DE LA SÉLECTION ---
-function onSelectionMade(eventArgs) {
-  Office.context.document.getSelectedDataAsync(
-    Office.CoercionType.Matrix,
-    function (result) {
-      if (result.status === Office.AsyncResultStatus.Succeeded) {
-        const data = result.value;
-        console.log('Données récupérées après sélection :', data);
-        window.selectedData = data;
-        showPreview(data);
-
-        // Dégriser la zone des options
-        const optionsZone = document.getElementById('options-zone');
-        if (optionsZone) {
-          optionsZone.classList.remove('disabled-zone');
-        }
-        // Cacher le message d'attente
-        const waitingMsg = document.getElementById('waiting-message');
-        if (waitingMsg) {
-          waitingMsg.style.display = 'none';
-        }
-
-        // Retirer l'écouteur (on ne veut qu'une seule sélection)
-        Office.context.document.removeHandlerAsync(
-          Office.EventType.DocumentSelectionChanged,
-          { handler: onSelectionMade },
-          function (removeResult) {
-            if (removeResult.status !== Office.AsyncResultStatus.Succeeded) {
-              console.warn('Impossible de retirer l\'écouteur :', removeResult.error.message);
-            }
-          }
-        );
-      } else {
-        console.error('Erreur lors de la lecture des données :', result.error.message);
-        alert('Erreur : impossible de lire les données sélectionnées. Veuillez réessayer.');
-        // Réactiver en cas d'erreur
-        const optionsZone = document.getElementById('options-zone');
-        if (optionsZone) {
-          optionsZone.classList.remove('disabled-zone');
-        }
-        const waitingMsg = document.getElementById('waiting-message');
-        if (waitingMsg) {
-          waitingMsg.style.display = 'none';
-        }
-      }
-    }
-  );
-}
-
-// --- 5. APERÇU DES DONNÉES BRUTES ---
+// --- 5. AFFICHER L'APERÇU DES DONNÉES BRUTES ---
 function showPreview(data) {
   const previewDiv = document.getElementById('data-preview');
   if (!previewDiv) return;
@@ -111,7 +49,7 @@ function showPreview(data) {
     return;
   }
 
-  const rows = data.slice(0, 6); // 5 premières lignes + en-tête
+  const rows = data.slice(0, 6);
   let html = '<table border="1" style="font-size:12px; width:100%; border-collapse:collapse;">';
   rows.forEach((row, index) => {
     html += `<tr style="${index === 0 ? 'background-color:#f0f0f0; font-weight:bold;' : ''}">`;
@@ -124,7 +62,7 @@ function showPreview(data) {
   previewDiv.innerHTML = html;
 }
 
-// --- 6. APERÇU DES DONNÉES NETTOYÉES ---
+// --- 6. AFFICHER L'APERÇU DES DONNÉES NETTOYÉES ---
 function showCleanedPreview(cleanedData) {
   const previewDiv = document.getElementById('cleaned-preview');
   if (!previewDiv) return;
@@ -147,11 +85,88 @@ function showCleanedPreview(cleanedData) {
   previewDiv.innerHTML = html;
 }
 
-// --- 7. LANCER L'ANALYSE (APPEL AU BACKEND) ---
+// --- 7. FONCTION APPELÉE LORS DE LA SÉLECTION (écouteur continu) ---
+async function onSelectionMade(eventArgs) {
+  // Récupérer les données
+  Office.context.document.getSelectedDataAsync(
+    Office.CoercionType.Matrix,
+    async function (result) {
+      if (result.status === Office.AsyncResultStatus.Succeeded) {
+        const data = result.value;
+        window.selectedData = data;
+        
+        // Récupérer les infos de la plage (adresse, dimensions)
+        const rangeInfo = await getRangeInfo();
+        const rangeInfoDiv = document.getElementById('range-info');
+        if (rangeInfoDiv && rangeInfo.address) {
+          rangeInfoDiv.innerHTML = `✅ Plage sélectionnée : ${rangeInfo.address} (${rangeInfo.rowCount} lignes × ${rangeInfo.colCount} colonnes)`;
+        } else if (rangeInfoDiv) {
+          rangeInfoDiv.innerHTML = `✅ Plage sélectionnée : ${data.length} lignes × ${data[0]?.length || 0} colonnes`;
+        }
+
+        showPreview(data);
+        
+        // Dégriser la zone des options
+        const optionsZone = document.getElementById('options-zone');
+        if (optionsZone) {
+          optionsZone.classList.remove('disabled-zone');
+        }
+        document.getElementById('waiting-message').style.display = 'none';
+        
+        // 🔴 NE PAS retirer l'écouteur ici — il reste actif en continu
+        // L'utilisateur peut sélectionner une nouvelle plage à tout moment
+      } else {
+        console.error('Erreur sélection:', result.error.message);
+      }
+    }
+  );
+}
+
+// --- 8. BOUTON "SÉLECTIONNER LA PLAGE" (active l'écouteur) ---
+function selectRange() {
+  // Désactiver les options en attendant la sélection
+  const optionsZone = document.getElementById('options-zone');
+  if (optionsZone) {
+    optionsZone.classList.add('disabled-zone');
+  }
+  document.getElementById('waiting-message').style.display = 'block';
+  
+  // Supprimer l'ancien écouteur s'il existe
+  if (selectionHandler) {
+    Office.context.document.removeHandlerAsync(
+      Office.EventType.DocumentSelectionChanged,
+      { handler: selectionHandler }
+    );
+  }
+  
+  // Ajouter le nouvel écouteur
+  selectionHandler = onSelectionMade;
+  Office.context.document.addHandlerAsync(
+    Office.EventType.DocumentSelectionChanged,
+    onSelectionMade
+  );
+  
+  // Afficher un message d'instruction
+  const rangeInfoDiv = document.getElementById('range-info');
+  if (rangeInfoDiv) {
+    rangeInfoDiv.innerHTML = '⏳ Sélectionnez une plage dans votre feuille Excel...';
+  }
+}
+
+// --- 9. LANCER L'ANALYSE (APPEL AU BACKEND) ---
 async function runAnalysis() {
   if (!window.selectedData || window.selectedData.length === 0) {
-    alert('Veuillez d\'abord sélectionner une plage de données avec le bouton "Sélectionner la plage de données".');
+    alert('Veuillez d\'abord sélectionner une plage de données.');
     return;
+  }
+
+  // 🔴 Retirer l'écouteur pour figer la sélection pendant le traitement
+  if (selectionHandler) {
+    Office.context.document.removeHandlerAsync(
+      Office.EventType.DocumentSelectionChanged,
+      { handler: selectionHandler }
+    );
+    selectionHandler = null;
   }
 
   const options = {
@@ -160,9 +175,9 @@ async function runAnalysis() {
     handleMissing: document.getElementById('selectMissing')?.value || 'none'
   };
 
-  // Afficher le chargement
+  // Afficher l'overlay de chargement
   const loading = document.getElementById('loading');
-  if (loading) loading.style.display = 'block';
+  loading.classList.add('active');
 
   try {
     const response = await fetch('/api/analyze/' + currentModule, {
@@ -174,48 +189,40 @@ async function runAnalysis() {
       })
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Erreur serveur (${response.status}) : ${errorText}`);
-    }
-
     const result = await response.json();
+
     if (result.error) throw new Error(result.error);
 
     window.analysisResult = result;
     showResultsPhase(result);
 
   } catch (error) {
-    console.error('Erreur analyse :', error);
     alert('Erreur lors de l\'analyse : ' + error.message);
   } finally {
-    if (loading) loading.style.display = 'none';
+    // Cacher l'overlay de chargement
+    loading.classList.remove('active');
   }
 }
 
-// --- 8. AFFICHER LES RÉSULTATS ---
+// --- 10. AFFICHER LES RÉSULTATS ---
 function showResultsPhase(result) {
   document.getElementById('config-phase').style.display = 'none';
   document.getElementById('results-phase').style.display = 'block';
   
-  // Remplir l'onglet Résumé (exemple pour Nettoyage)
-  const tabContent = document.getElementById('tab-content');
-  if (tabContent) {
-    tabContent.innerHTML = `
-      <p><strong>Résumé du nettoyage :</strong></p>
-      <ul>
-        <li>Doublons supprimés : ${result.summary?.duplicatesRemoved || 0}</li>
-        <li>Dates corrigées : ${result.summary?.datesFixed || 0}</li>
-        <li>Cellules vides traitées : ${result.summary?.emptyCellsHandled || 0}</li>
-        <li>Valeurs aberrantes détectées : ${result.summary?.outliersDetected || 0}</li>
-      </ul>
-      <p><strong>Aperçu des données nettoyées :</strong></p>
-    `;
-  }
+  document.getElementById('tab-content').innerHTML = `
+    <p><strong>Résumé du nettoyage :</strong></p>
+    <ul>
+      <li>Doublons supprimés : ${result.summary?.duplicatesRemoved || 0}</li>
+      <li>Dates corrigées : ${result.summary?.datesFixed || 0}</li>
+      <li>Cellules vides traitées : ${result.summary?.emptyCellsHandled || 0}</li>
+      <li>Valeurs aberrantes détectées : ${result.summary?.outliersDetected || 0}</li>
+    </ul>
+    <p><strong>Aperçu des données nettoyées :</strong></p>
+  `;
   showCleanedPreview(result.cleanedData);
 }
 
-// --- 9. EXPORTER VERS UNE NOUVELLE FEUILLE AVEC TABLEAU STRUCTURÉ ---
+// --- 11. EXPORTER VERS UNE NOUVELLE FEUILLE (avec Tableau structuré) ---
 async function exportToExcel() {
   if (!window.analysisResult) {
     alert('Aucun résultat à exporter.');
@@ -223,10 +230,6 @@ async function exportToExcel() {
   }
 
   const dataToExport = window.analysisResult.cleanedData || window.analysisResult;
-  if (!dataToExport || dataToExport.length === 0) {
-    alert('Aucune donnée à exporter.');
-    return;
-  }
 
   await Excel.run(async (context) => {
     const sheets = context.workbook.worksheets;
@@ -238,6 +241,7 @@ async function exportToExcel() {
     while (true) {
       const existing = sheets.getItemOrNullObject(sheetName);
       await context.sync();
+
       if (existing.isNullObject) {
         break;
       } else {
@@ -246,16 +250,13 @@ async function exportToExcel() {
       }
     }
 
-    // Créer la nouvelle feuille
     const newSheet = sheets.add(sheetName);
-    
-    // Écrire les données
     const range = newSheet.getRangeByIndexes(0, 0, dataToExport.length, dataToExport[0].length);
     range.values = dataToExport;
     range.format.autofitColumns();
 
-    // ✅ Créer un tableau structuré (Excel Table) avec style
-    const table = newSheet.tables.add(range, true); // true = en-têtes
+    // ✅ Création d'un Tableau Excel structuré
+    const table = newSheet.tables.add(range, true);
     table.style = "TableStyleMedium9";
 
     await context.sync();
@@ -266,61 +267,62 @@ async function exportToExcel() {
   });
 }
 
-// --- 10. INITIALISATION ---
+// --- 12. BOUTON "NETTOYAGE APPROFONDI" (coche les options + lance) ---
+function runDeepClean() {
+  const chkDuplicates = document.getElementById('chkDuplicates');
+  const chkFormats = document.getElementById('chkFormats');
+  const selectMissing = document.getElementById('selectMissing');
+  
+  if (chkDuplicates) chkDuplicates.checked = true;
+  if (chkFormats) chkFormats.checked = true;
+  if (selectMissing) selectMissing.value = 'ai';
+  
+  runAnalysis();
+}
+
+// --- 13. INITIALISATION ---
 Office.onReady(function(info) {
   if (info.host === Office.HostType.Excel) {
     updateLabels();
 
-    // Bouton "Sélectionner la plage" (nouvelle logique)
-    document.getElementById('btnSelectRange').onclick = selectRange;
-
-    // Bouton "Nettoyage approfondi" (zone options)
-    document.getElementById('btnDeepClean').onclick = function() {
-      const chkDuplicates = document.getElementById('chkDuplicates');
-      const chkFormats = document.getElementById('chkFormats');
-      const selectMissing = document.getElementById('selectMissing');
-      if (chkDuplicates) chkDuplicates.checked = true;
-      if (chkFormats) chkFormats.checked = true;
-      if (selectMissing) selectMissing.value = 'ai';
-      // Lancer directement l'analyse
-      runAnalysis();
-    };
-
-    // Bouton "Lancer le nettoyage" (zone options)
-    document.getElementById('btnRunClean').onclick = runAnalysis;
-
-    // Bouton de la barre (défilement)
+    // Bouton du haut (#btnRun) → scroll jusqu'à #btnSelectRange
     document.getElementById('btnRun').onclick = function() {
-      const target = document.getElementById('btnSelectRange');
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
+      document.getElementById('btnSelectRange').scrollIntoView({ 
+        behavior: 'smooth', block: 'center' 
+      });
     };
 
-    // Boutons d'export et nouvelle analyse
+    // Boutons de la barre
+    document.getElementById('btnSelectRange').onclick = selectRange;
     document.getElementById('btnExport').onclick = exportToExcel;
     document.getElementById('btnNewAnalysis').onclick = function() {
       document.getElementById('results-phase').style.display = 'none';
       document.getElementById('config-phase').style.display = 'block';
-      // Réinitialiser l'état
       window.selectedData = null;
       window.analysisResult = null;
+      
+      // 🔴 Retirer l'écouteur pour repartir proprement
+      if (selectionHandler) {
+        Office.context.document.removeHandlerAsync(
+          Office.EventType.DocumentSelectionChanged,
+          { handler: selectionHandler }
+        );
+        selectionHandler = null;
+      }
+      
       // Réactiver la zone d'options (grisée par défaut)
       const optionsZone = document.getElementById('options-zone');
       if (optionsZone) {
         optionsZone.classList.add('disabled-zone');
       }
-      // Réinitialiser l'aperçu
-      const previewDiv = document.getElementById('data-preview');
-      if (previewDiv) {
-        previewDiv.innerHTML = '<em style="color:#888;">Aucune plage sélectionnée pour l\'instant.</em>';
-      }
-      // Cacher le message d'attente
-      const waitingMsg = document.getElementById('waiting-message');
-      if (waitingMsg) {
-        waitingMsg.style.display = 'none';
-      }
+      document.getElementById('waiting-message').style.display = 'block';
+      document.getElementById('range-info').innerHTML = '';
+      document.getElementById('data-preview').innerHTML = '<em style="color:#888;">Aucune plage sélectionnée pour l\'instant.</em>';
     };
+
+    // Boutons "Nettoyage approfondi" et "Lancer le nettoyage" (dans options-zone)
+    document.getElementById('btnDeepClean').onclick = runDeepClean;
+    document.getElementById('btnRunClean').onclick = runAnalysis;
 
     // Placeholders pour les autres boutons de la barre
     document.getElementById('btnTemplate').onclick = function() {
@@ -336,6 +338,8 @@ Office.onReady(function(info) {
       alert('Envoyez vos retours à support@suiteiapro.fr (ou ouvrez votre client mail).');
     };
 
-    console.log('Suite IA Pro prêt - Module:', currentModule);
+    // Par défaut, la zone options-zone est grisée tant qu'aucune plage n'est sélectionnée
+    document.getElementById('options-zone').classList.add('disabled-zone');
+    document.getElementById('waiting-message').style.display = 'block';
   }
 });
