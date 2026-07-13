@@ -161,7 +161,6 @@ async function runAnalysis() {
     selectionHandler = null;
   }
 
-  // ✅ Options simplifiées : uniquement handleMissing
   const options = {
     handleMissing: document.getElementById('selectMissing')?.value || 'ignore'
   };
@@ -193,7 +192,7 @@ async function runAnalysis() {
   }
 }
 
-// --- 10. AFFICHER LES RÉSULTATS (nouveau résumé) ---
+// --- 10. AFFICHER LES RÉSULTATS (résumé enrichi) ---
 function showResultsPhase(result) {
   document.getElementById('config-phase').style.display = 'none';
   document.getElementById('results-phase').style.display = 'block';
@@ -217,7 +216,7 @@ function showResultsPhase(result) {
   showCleanedPreview(result.cleanedData);
 }
 
-// --- 11. EXPORTER VERS UNE NOUVELLE FEUILLE (avec formats de cellule par type) ---
+// --- 11. EXPORTER VERS UNE NOUVELLE FEUILLE (avec vérification de cohérence) ---
 async function exportToExcel() {
   if (!window.analysisResult) {
     alert('Aucun résultat à exporter.');
@@ -250,30 +249,23 @@ async function exportToExcel() {
     const table = newSheet.tables.add(range, true);
     table.style = "TableStyleMedium9";
 
-    // ✅ Application du format de cellule selon le type de colonne
-    const numberOfDataRows = dataToExport.length - 1; // hors en-tête
-    if (numberOfDataRows > 0 && columnTypes.length > 0) {
+    // ✅ Sécurisation du formatage : on vérifie que columnTypes est cohérent
+    const numberOfDataRows = dataToExport.length - 1;
+    if (numberOfDataRows > 0 && columnTypes.length === dataToExport[0].length) {
       columnTypes.forEach((type, colIndex) => {
-        if (!type) return;
-        // On ne formate que les colonnes connues
+        const columnRange = newSheet.getRangeByIndexes(1, colIndex, numberOfDataRows, 1);
         let formatString = null;
-        if (type === 'date') {
-          formatString = 'jj/mm/aaaa';
-        } else if (type === 'montant') {
-          formatString = '#,##0.00 €';
-        } else if (type === 'pourcentage') {
-          formatString = '0.00%';
-        } else if (type === 'nombre') {
-          formatString = '#,##0.00';
-        }
+        if (type === 'date') formatString = 'jj/mm/aaaa';
+        else if (type === 'montant') formatString = '#,##0.00 €';
+        else if (type === 'pourcentage') formatString = '0.00%';
+        else if (type === 'nombre') formatString = '#,##0.00';
         if (formatString) {
-          const columnRange = newSheet.getRangeByIndexes(
-            1, colIndex, numberOfDataRows, 1
-          );
           const formatArray = Array(numberOfDataRows).fill([formatString]);
           columnRange.numberFormat = formatArray;
         }
       });
+    } else if (columnTypes.length !== dataToExport[0].length) {
+      console.warn('columnTypes manquant ou incohérent, mise en forme ignorée.');
     }
 
     await context.sync();
@@ -289,14 +281,12 @@ Office.onReady(function(info) {
   if (info.host === Office.HostType.Excel) {
     updateLabels();
 
-    // Bouton du haut → scroll
     document.getElementById('btnRun').onclick = function() {
       document.getElementById('btnSelectRange').scrollIntoView({ 
         behavior: 'smooth', block: 'center' 
       });
     };
 
-    // Boutons
     document.getElementById('btnSelectRange').onclick = selectRange;
     document.getElementById('btnRunClean').onclick = runAnalysis;
     document.getElementById('btnExport').onclick = exportToExcel;
@@ -323,7 +313,6 @@ Office.onReady(function(info) {
       document.getElementById('data-preview').innerHTML = '<em style="color:#888;">Aucune plage sélectionnée pour l\'instant.</em>';
     };
 
-    // Placeholders
     document.getElementById('btnTemplate').onclick = function() {
       alert('Fonctionnalité "Télécharger modèle" à implémenter.');
     };
@@ -337,7 +326,6 @@ Office.onReady(function(info) {
       alert('Envoyez vos retours à support@suiteiapro.fr (ou ouvrez votre client mail).');
     };
 
-    // Par défaut, la zone options est grisée
     document.getElementById('options-zone').classList.add('disabled-zone');
     document.getElementById('waiting-message').style.display = 'block';
   }
