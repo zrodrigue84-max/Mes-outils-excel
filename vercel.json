@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/analyze/nettoyage.js": {
+      "maxDuration": 60
+    }
+  }
+}
