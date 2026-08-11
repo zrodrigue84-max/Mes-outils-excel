@@ -1,0 +1,154 @@
+# Règles de travail pour l'agent — Projet SMART CLEANER AI
+
+## Qui je suis (utilisateur)
+Je ne suis PAS développeur, je ne comprends pas le code, ni l'anglais 
+technique. Explique toujours en français simple, sans jargon non traduit. 
+Je ne veux jamais avoir à copier-coller du code moi-même — gère les 
+fichiers, Git, et les tests toi-même.
+
+## Nom du produit
+Le produit final s'appelle **Smart Cleaner AI**. Si un ancien nom 
+("Suite IA Pro", "Smart Clean AI", "Pro-Cleaner AI", "Nettoyage de 
+Données") apparaît encore quelque part dans le code ou le manifest, 
+corrige-le vers "Smart Cleaner AI".
+
+## Référence du cahier des charges
+Le cahier des charges complet (spécifications UX/tech V2026, 4 pages) et 
+la fiche de présentation produit m'ont été fournis séparément et sont 
+la référence absolue pour les fonctionnalités attendues (le nom "Pro-
+Cleaner AI" y apparaît encore car le document a été rédigé avant le choix 
+final du nom — remplace-le mentalement par "Smart Cleaner AI" partout où 
+tu le vois). Résumé des points techniques non négociables qu'ils 
+contiennent :
+- Moteur IA : API GLM-5.2 (Zhipu AI / Scaleway), toujours en 
+  `response_format: json_object`
+- Volet latéral 350px, redimensionnable, avec DEUX ancres fixes qui ne 
+  disparaissent JAMAIS : le panneau "Étapes appliquées" (bas) et la barre 
+  de chat IA (tout en bas)
+- Toute opération lourde (dépivotement, distance de Levenshtein, grosses 
+  matrices) doit être traitée EN MÉMOIRE JavaScript, avec un seul et 
+  unique `await context.sync()` à l'écriture finale — jamais de sync 
+  répétés qui geleraient Excel
+- Persistance des recettes de nettoyage via 
+  `Office.context.document.settings.set("SmartCleanerRecipe", jsonRecipe)`
+
+## ARCHITECTURE TECHNIQUE — DÉCISION DÉJÀ PRISE, NE PAS REDEMANDER
+Le frontend sera construit en **React + Fluent UI** (bibliothèque de 
+composants visuels de Microsoft), pas en HTML/CSS/JS classique. C'est 
+un choix définitif fait pour obtenir un rendu moderne, fluide, et 
+visuellement intégré à Excel. Commence la Phase 0 en mettant en place 
+cette stack (structure de projet React adaptée à un Office Add-in 
+taskpane, installation de Fluent UI). N'utilise plus le code HTML/CSS/JS 
+vanilla existant comme base pour l'habillage visuel — la logique métier 
+déjà écrite (prompt IA de nettoyage, détection de type de colonne, appel 
+backend) reste réutilisable et doit être reprise, mais l'interface est 
+reconstruite proprement en composants React dès le départ.
+
+## DÉCOUPAGE EN PHASES — À SUIVRE DANS L'ORDRE, UNE SEULE À LA FOIS
+
+Ne travaille JAMAIS sur deux phases en même temps. Ne passe à la phase 
+suivante qu'après ma validation explicite ET un test réussi dans Excel.
+
+**Phase 0 — Fondations**
+- Renommer l'add-in en "Smart Cleaner AI" partout (manifest, taskpane, 
+  titres, métadonnées)
+- Nettoyer le dépôt GitHub (fichier `nettoyage.js` en doublon à la 
+  racine s'il existe encore, vérifier qu'aucun autre fichier ne traîne 
+  mal placé, supprimer tout résidu des anciens modules Finance/Avis 
+  Clients)
+- Mettre en place la structure de projet React + Fluent UI pour le 
+  taskpane
+- Mettre en place le script de test terminal (voir section "Tests" plus 
+  bas)
+
+**Phase 1 — Ruban Excel + squelette du volet persistant en React**
+- Point d'entrée du ruban Excel simplifié : un seul bouton qui ouvre le 
+  volet React complet
+- Construire le squelette du volet latéral 350px (redimensionnable) avec 
+  les 2 ancres fixes (Étapes appliquées + barre de chat) et la zone 
+  centrale vide pour l'instant, en composants React/Fluent UI
+- Les 5 blocs internes (Importer / Diagnostic / Transformation / 
+  Combiner / Automation) peuvent être des coquilles vides à ce stade, 
+  l'objectif est la structure visuelle et de navigation
+
+**Phase 2 — Diagnostic local ("Scan clinique"), SANS appel IA**
+- Détection automatique de zone (`CurrentRegion`)
+- Compteur de lignes vides + bouton Supprimer
+- Compteur de cellules vides + bouton Gérer (remplir par 0 / propager)
+- Détection des formats de date + bouton Unifier
+- Tout ceci doit fonctionner à 100% en JavaScript local, sans jamais 
+  appeler l'API GLM-5.2 (pas de coût, pas de latence réseau)
+- Réutilise la logique de détection déjà écrite dans l'ancien 
+  `api/analyze/nettoyage.js` si pertinent, adaptée au nouveau découpage
+
+**Phase 3 — Chasse aux fautes de frappe (Fuzzy Matching + IA)**
+- Regroupement des textes similaires par distance de Levenshtein (calcul 
+  local)
+- Appel à l'API GLM-5.2 pour pré-sélectionner la meilleure orthographe
+- Interface de validation avec boutons radio + bouton "Appliquer les 
+  corrections"
+
+**Phase 4 — Import multi-fichiers et fusion automatique (Parcours 1 et 2)**
+- Sélection de plusieurs fichiers (Excel/CSV)
+- Comparaison des en-têtes : proposer empilement si identiques, fusion si 
+  différents (pop-up modale comme décrit dans le cahier des charges)
+- Détection des clés primaires/étrangères via échantillon envoyé à l'IA
+- Gestion des tables orphelines (boutons Vérifier / Exclure)
+
+**Phase 5 — Fusion pilotée par la barre de chat IA (Parcours 3)**
+- Interprétation du langage naturel tapé dans le chat
+- Génération d'un objet JSON structuré d'instructions par l'IA
+- Carte de confirmation avant exécution réelle
+
+**Phase 6 — Persistance des recettes et automatisation (Parcours 4 + Bloc 5)**
+- Sauvegarde de la recette JSON dans les métadonnées du document
+- Rechargement automatique à la réouverture du fichier
+- Boutons "Réappliquer" et "Suivre Dossier" (automatisation sur nouveaux 
+  fichiers d'un dossier)
+
+**Phase 7 — Fonctions avancées Colonnes/Lignes + menu contextuel**
+- Séparer, fusionner texte, extraction IA (email, code postal), 
+  anonymisation RGPD, colonne calculée, "par l'exemple"
+- Isoler lignes suspectes, propager (fill up/down)
+- Menu contextuel au clic droit sur les en-têtes de colonnes (4 options 
+  du cahier des charges)
+
+**Phase 8 — Finitions et robustesse**
+- Vérification que la règle "un seul context.sync()" est bien respectée 
+  partout
+- Tests de charge sur gros volumes
+- Relecture complète de l'expérience utilisateur
+
+## TESTS — Toujours avant de me demander de tester dans Excel
+- Après toute modification touchant le backend (`api/analyze/*.js`), crée 
+  ou réutilise un script de test en ligne de commande qui simule un appel 
+  Excel avec des données de test volontairement "sales" (doublons, dates 
+  mélangées, fautes de frappe, cellules vides).
+- Ne me demande JAMAIS de tester dans Excel si ce test automatique en 
+  local a échoué — corrige d'abord.
+- Une fois le test automatique réussi, explique-moi ÉTAPE PAR ÉTAPE, en 
+  français très simple : quoi ouvrir, sur quel bouton cliquer (nom exact), 
+  quel résultat je dois voir. Attends ma confirmation avant de continuer.
+
+## LIMITE D'ACHARNEMENT — différenciée selon le modèle IA utilisé
+- Si tu es **Composer 2.5** : tu peux tenter jusqu'à 5 corrections 
+  successives sur un même bug avant de t'arrêter.
+- Si tu es **Claude Sonnet** (ou tout autre modèle premium payant à 
+  l'usage) : arrête-toi après 3 tentatives maximum, car chaque tentative 
+  a un coût réel sur mon abonnement.
+- Dans les deux cas, à la limite atteinte : ARRÊTE-TOI, explique 
+  clairement en français simple ce qui a été essayé, pourquoi ça n'a pas 
+  fonctionné, et propose une suite (changer d'approche, ou suggère-moi de 
+  basculer vers Claude Sonnet si tu es Composer et que tu bloques).
+- Ne relance jamais une tentative supplémentaire sans ma validation 
+  explicite après avoir atteint la limite.
+
+## Git et déploiement
+- Committe et pousse vers GitHub automatiquement après chaque étape que 
+  j'ai validée, avec un message de commit clair en français décrivant ce 
+  qui a été fait.
+- Ne supprime jamais de fichier sans le mentionner explicitement dans ton 
+  résumé.
+- Le déploiement Vercel se fait automatiquement après chaque push — 
+  vérifie que le déploiement passe au vert avant de me dire qu'une étape 
+  est prête à tester.
