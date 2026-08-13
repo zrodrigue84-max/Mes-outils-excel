@@ -1,14 +1,29 @@
 {
-  "name": "suite-ia-pro",
-  "version": "1.0.0",
-  "description": "Complément Excel Suite IA Pro",
-  "main": "taskpane.js",
+  "name": "smart-cleaner-ai",
+  "version": "3.0.0",
+  "description": "Complément Excel Smart Cleaner AI — nettoyage de données intelligent",
+  "type": "module",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test:backend": "node scripts/test-nettoyage.js",
     "start": "office-addin-debugging start manifest.xml desktop"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@fluentui/react-components": "^9.64.0",
+    "@fluentui/react-icons": "^2.0.270",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
   "devDependencies": {
-    "office-addin-debugging": "latest",
-    "office-addin-manifest": "latest"
+    "@types/office-js": "^1.0.430",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "office-addin-debugging": "^5.1.6",
+    "office-addin-manifest": "^1.13.5",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3"
   }
 }

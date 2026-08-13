@@ -7,13 +7,13 @@
   xsi:type="TaskPaneApp">
 
   <Id>11111111-2222-3333-4444-555555555556</Id>
-  <Version>2.0.0.0</Version>
-  <ProviderName>Suite IA Pro</ProviderName>
+  <Version>3.0.0.0</Version>
+  <ProviderName>Smart Cleaner AI</ProviderName>
   <DefaultLocale>fr-FR</DefaultLocale>
-  <DisplayName DefaultValue="Suite IA Pro"/>
-  <Description DefaultValue="Complément Excel IA — Analyse financière, avis clients et nettoyage de données."/>
-  <IconUrl DefaultValue="https://mes-outils-excel.vercel.app/assets/finance-32.png"/>
-  <HighResolutionIconUrl DefaultValue="https://mes-outils-excel.vercel.app/assets/finance-80.png"/>
+  <DisplayName DefaultValue="Smart Cleaner AI"/>
+  <Description DefaultValue="Nettoyage et restructuration de données intelligent propulsé par IA."/>
+  <IconUrl DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-80.png"/>
   <SupportUrl DefaultValue="https://mes-outils-excel.vercel.app"/>
 
   <AppDomains>
@@ -41,83 +41,30 @@
           </GetStarted>
 
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
-            <CustomTab id="TabSuiteIAPro">
+            <CustomTab id="TabSmartCleanerAI">
               <Label resid="Tab.Label"/>
 
-              <!-- ================= MODULE 1 : ANALYSE FINANCIÈRE ================= -->
-              <Group id="GroupFinance">
-                <Label resid="Group.Finance.Label"/>
+              <Group id="GroupSmartCleaner">
+                <Label resid="Group.SmartCleaner.Label"/>
                 <Icon>
-                  <bt:Image size="16" resid="Icon.Finance.16"/>
-                  <bt:Image size="32" resid="Icon.Finance.32"/>
-                  <bt:Image size="80" resid="Icon.Finance.80"/>
+                  <bt:Image size="16" resid="Icon.SmartCleaner.16"/>
+                  <bt:Image size="32" resid="Icon.SmartCleaner.32"/>
+                  <bt:Image size="80" resid="Icon.SmartCleaner.80"/>
                 </Icon>
 
-                <Control xsi:type="Button" id="BtnFinanceOuvrir">
-                  <Label resid="Btn.Finance.Ouvrir.Label"/>
+                <Control xsi:type="Button" id="BtnSmartCleanerOuvrir">
+                  <Label resid="Btn.SmartCleaner.Ouvrir.Label"/>
                   <Supertip>
-                    <Title resid="Btn.Finance.Ouvrir.Label"/>
-                    <Description resid="Btn.Finance.Ouvrir.Desc"/>
+                    <Title resid="Btn.SmartCleaner.Ouvrir.Label"/>
+                    <Description resid="Btn.SmartCleaner.Ouvrir.Desc"/>
                   </Supertip>
                   <Icon>
-                    <bt:Image size="16" resid="Icon.Finance.16"/>
-                    <bt:Image size="32" resid="Icon.Finance.32"/>
-                    <bt:Image size="80" resid="Icon.Finance.80"/>
+                    <bt:Image size="16" resid="Icon.SmartCleaner.16"/>
+                    <bt:Image size="32" resid="Icon.SmartCleaner.32"/>
+                    <bt:Image size="80" resid="Icon.SmartCleaner.80"/>
                   </Icon>
                   <Action xsi:type="ShowTaskpane">
-                    <SourceLocation resid="Taskpane.Finance"/>
-                  </Action>
-                </Control>
-              </Group>
-
-              <!-- ================= MODULE 2 : AVIS CLIENTS ================= -->
-              <Group id="GroupAvis">
-                <Label resid="Group.Avis.Label"/>
-                <Icon>
-                  <bt:Image size="16" resid="Icon.Avis.16"/>
-                  <bt:Image size="32" resid="Icon.Avis.32"/>
-                  <bt:Image size="80" resid="Icon.Avis.80"/>
-                </Icon>
-
-                <Control xsi:type="Button" id="BtnAvisOuvrir">
-                  <Label resid="Btn.Avis.Ouvrir.Label"/>
-                  <Supertip>
-                    <Title resid="Btn.Avis.Ouvrir.Label"/>
-                    <Description resid="Btn.Avis.Ouvrir.Desc"/>
-                  </Supertip>
-                  <Icon>
-                    <bt:Image size="16" resid="Icon.Avis.16"/>
-                    <bt:Image size="32" resid="Icon.Avis.32"/>
-                    <bt:Image size="80" resid="Icon.Avis.80"/>
-                  </Icon>
-                  <Action xsi:type="ShowTaskpane">
-                    <SourceLocation resid="Taskpane.Avis"/>
-                  </Action>
-                </Control>
-              </Group>
-
-              <!-- ================= MODULE 3 : NETTOYAGE DE DONNÉES ================= -->
-              <Group id="GroupNettoyage">
-                <Label resid="Group.Nettoyage.Label"/>
-                <Icon>
-                  <bt:Image size="16" resid="Icon.Nettoyage.16"/>
-                  <bt:Image size="32" resid="Icon.Nettoyage.32"/>
-                  <bt:Image size="80" resid="Icon.Nettoyage.80"/>
-                </Icon>
-
-                <Control xsi:type="Button" id="BtnNettoyageOuvrir">
-                  <Label resid="Btn.Nettoyage.Ouvrir.Label"/>
-                  <Supertip>
-                    <Title resid="Btn.Nettoyage.Ouvrir.Label"/>
-                    <Description resid="Btn.Nettoyage.Ouvrir.Desc"/>
-                  </Supertip>
-                  <Icon>
-                    <bt:Image size="16" resid="Icon.Nettoyage.16"/>
-                    <bt:Image size="32" resid="Icon.Nettoyage.32"/>
-                    <bt:Image size="80" resid="Icon.Nettoyage.80"/>
-                  </Icon>
-                  <Action xsi:type="ShowTaskpane">
-                    <SourceLocation resid="Taskpane.Nettoyage"/>
+                    <SourceLocation resid="Taskpane.SmartCleaner"/>
                   </Action>
                 </Control>
               </Group>
@@ -130,50 +77,26 @@
 
     <Resources>
       <bt:Images>
-        <bt:Image id="Icon.Finance.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/finance-16.png"/>
-        <bt:Image id="Icon.Finance.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/finance-32.png"/>
-        <bt:Image id="Icon.Finance.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/finance-80.png"/>
-
-        <bt:Image id="Icon.Avis.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/avis-16.png"/>
-        <bt:Image id="Icon.Avis.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/avis-32.png"/>
-        <bt:Image id="Icon.Avis.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/avis-80.png"/>
-
-        <bt:Image id="Icon.Nettoyage.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/nettoyage-16.png"/>
-        <bt:Image id="Icon.Nettoyage.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/nettoyage-32.png"/>
-        <bt:Image id="Icon.Nettoyage.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/nettoyage-80.png"/>
+        <bt:Image id="Icon.SmartCleaner.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-16.png"/>
+        <bt:Image id="Icon.SmartCleaner.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-32.png"/>
+        <bt:Image id="Icon.SmartCleaner.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-80.png"/>
       </bt:Images>
 
       <bt:Urls>
         <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://mes-outils-excel.vercel.app"/>
-
-        <!-- Chaque module pointe vers UNE SEULE URL de taskpane.
-             La navigation interne (Configuration / Résultats, onglets,
-             sélecteurs de vue, etc.) est gérée en JS côté client à
-             l'intérieur du taskpane, PAS par des URLs de ruban séparées. -->
-        <bt:Url id="Taskpane.Finance" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?module=finance"/>
-        <bt:Url id="Taskpane.Avis" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?module=avis"/>
-        <bt:Url id="Taskpane.Nettoyage" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?module=nettoyage"/>
+        <bt:Url id="Taskpane.SmartCleaner" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html"/>
       </bt:Urls>
 
       <bt:ShortStrings>
-        <bt:String id="GetStarted.Title" DefaultValue="Bienvenue dans Suite IA Pro"/>
-        <bt:String id="Tab.Label" DefaultValue="Suite IA Pro"/>
-
-        <bt:String id="Group.Finance.Label" DefaultValue="Analyse Financière"/>
-        <bt:String id="Group.Avis.Label" DefaultValue="Avis Clients"/>
-        <bt:String id="Group.Nettoyage.Label" DefaultValue="Nettoyage de Données"/>
-
-        <bt:String id="Btn.Finance.Ouvrir.Label" DefaultValue="Analyse Financière"/>
-        <bt:String id="Btn.Avis.Ouvrir.Label" DefaultValue="Avis Clients"/>
-        <bt:String id="Btn.Nettoyage.Ouvrir.Label" DefaultValue="Nettoyage de Données"/>
+        <bt:String id="GetStarted.Title" DefaultValue="Bienvenue dans Smart Cleaner AI"/>
+        <bt:String id="Tab.Label" DefaultValue="Smart Cleaner AI"/>
+        <bt:String id="Group.SmartCleaner.Label" DefaultValue="Smart Cleaner AI"/>
+        <bt:String id="Btn.SmartCleaner.Ouvrir.Label" DefaultValue="Ouvrir Smart Cleaner AI"/>
       </bt:ShortStrings>
 
       <bt:LongStrings>
-        <bt:String id="GetStarted.Description" DefaultValue="Analysez vos données sans jamais écraser vos feuilles existantes."/>
-
-        <bt:String id="Btn.Finance.Ouvrir.Desc" DefaultValue="Ouvre l'outil d'analyse financière complète : ratios, score de santé, comparaison sectorielle et recommandations, générés dans une nouvelle feuille."/>
-        <bt:String id="Btn.Avis.Ouvrir.Desc" DefaultValue="Ouvre l'outil d'analyse des avis et sentiments clients : classement par thème, tendances temporelles et recommandations priorisées."/>
-        <bt:String id="Btn.Nettoyage.Ouvrir.Desc" DefaultValue="Ouvre l'outil de nettoyage de données en un clic : doublons, formats, valeurs manquantes et aberrantes, sans jamais toucher à votre feuille source."/>
+        <bt:String id="GetStarted.Description" DefaultValue="Nettoyez et restructurez vos données sans jamais écraser vos feuilles existantes."/>
+        <bt:String id="Btn.SmartCleaner.Ouvrir.Desc" DefaultValue="Ouvre le volet Smart Cleaner AI : diagnostic, transformation, fusion multi-fichiers et automatisation."/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
