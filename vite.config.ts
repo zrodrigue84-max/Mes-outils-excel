@@ -1,10 +1,20 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
-import devCerts from 'office-addin-dev-certs';
 
-export default defineConfig(async () => {
-  const httpsOptions = await devCerts.getHttpsServerOptions();
+export default defineConfig(async ({ command }) => {
+  // Certificats HTTPS locaux uniquement pour le serveur de dev Excel.
+  // Sur Vercel (vite build), office-addin-dev-certs tente sudo → échec du build.
+  let httpsOptions: Awaited<
+    ReturnType<
+      typeof import('office-addin-dev-certs').default.getHttpsServerOptions
+    >
+  > | undefined;
+
+  if (command === 'serve') {
+    const devCerts = await import('office-addin-dev-certs');
+    httpsOptions = await devCerts.default.getHttpsServerOptions();
+  }
 
   return {
     plugins: [react()],
@@ -22,7 +32,7 @@ export default defineConfig(async () => {
     server: {
       port: 3000,
       strictPort: true,
-      https: httpsOptions,
+      ...(httpsOptions ? { https: httpsOptions } : {}),
     },
   };
 });
