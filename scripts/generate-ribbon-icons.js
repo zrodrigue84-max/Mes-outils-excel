@@ -1,18 +1,34 @@
 /**
- * Génère les PNG du ruban depuis les SVG sur mesure (custom-ribbon-svgs.js).
+ * Génère les PNG du ruban à partir des icônes OFFICIELLES Microsoft Fluent UI System Icons
+ * (@fluentui/svg-icons). Aucune forme n'est inventée : on utilise soit l'icône "Color"
+ * multi-tons officielle telle quelle, soit l'icône "filled" officielle recolorée en une
+ * seule couleur unie (Bleu Office / Vert Excel), sans dégradé ni ombre ajoutés.
  */
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import sharp from 'sharp';
 import { ICON_VERSION, iconFileName } from './ribbon-icons.js';
-import { CUSTOM_RIBBON_SVGS, RIBBON_ICON_KEYS } from './custom-ribbon-svgs.js';
+import { ICON_SOURCES, RIBBON_ICON_KEYS } from './ribbon-icon-sources.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
+const SVG_DIR = path.join(root, 'node_modules', '@fluentui', 'svg-icons', 'icons');
 const OUT_DIR = path.join(root, 'public', 'assets');
 
 const SIZES = [16, 32, 80];
+/** Marge intérieure pour que l'icône respire dans le canevas du ruban. */
+const PADDING_RATIO = 0.08;
+
+function recolorFlat(svgContent, color) {
+  let svg = svgContent;
+  svg = svg.replace(/fill="(?!none")[^"]*"/gi, `fill="${color}"`);
+  svg = svg.replace(/<path(?![^>]*fill=)/gi, `<path fill="${color}"`);
+  svg = svg.replace(/<circle(?![^>]*fill=)/gi, `<circle fill="${color}"`);
+  svg = svg.replace(/<rect(?![^>]*fill=)/gi, `<rect fill="${color}"`);
+  svg = svg.replace(/<polygon(?![^>]*fill=)/gi, `<polygon fill="${color}"`);
+  return svg;
+}
 
 function cleanObsoleteIcons() {
   if (!fs.existsSync(OUT_DIR)) return;
@@ -26,14 +42,29 @@ function cleanObsoleteIcons() {
 }
 
 async function renderPng(iconKey, size) {
-  const svg = CUSTOM_RIBBON_SVGS[iconKey];
-  if (!svg) {
-    throw new Error(`SVG manquant pour « ${iconKey} »`);
+  const source = ICON_SOURCES[iconKey];
+  if (!source) {
+    throw new Error(`Source manquante pour « ${iconKey} »`);
   }
 
-  const pngBuffer = await sharp(Buffer.from(svg), { density: 300 })
-    .resize(size, size, {
-      fit: 'contain',
+  const svgPath = path.join(SVG_DIR, source.file);
+  if (!fs.existsSync(svgPath)) {
+    throw new Error(`Icône Fluent UI introuvable : ${svgPath}`);
+  }
+
+  const rawSvg = fs.readFileSync(svgPath, 'utf8');
+  const svg = source.mode === 'flat' ? recolorFlat(rawSvg, source.color) : rawSvg;
+
+  const padding = Math.round(size * PADDING_RATIO);
+  const inner = size - padding * 2;
+
+  const pngBuffer = await sharp(Buffer.from(svg), { density: 384 })
+    .resize(inner, inner, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .extend({
+      top: padding,
+      bottom: padding,
+      left: padding,
+      right: padding,
       background: { r: 0, g: 0, b: 0, alpha: 0 },
     })
     .png()
@@ -61,7 +92,7 @@ async function main() {
     }
   }
 
-  console.log(`\n✅ ${count} icônes PNG premium (${ICON_VERSION}) dans public/assets/`);
+  console.log(`\n✅ ${count} icônes PNG officielles Fluent UI (${ICON_VERSION}) dans public/assets/`);
 }
 
 main().catch((err) => {
