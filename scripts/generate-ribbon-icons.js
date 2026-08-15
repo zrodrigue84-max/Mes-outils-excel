@@ -1,13 +1,13 @@
 /**
- * Génère des icônes PNG colorées style Office 365 / Fluent Design pour le ruban Excel.
- * Tuile arrondie en dégradé + pictogramme blanc centré (depuis @fluentui/svg-icons).
+ * Génère des icônes PNG style ruban Office 365 pour Smart Cleaner AI.
+ * Formes détourées sans fond, 3 couleurs, dégradés subtils + léger relief Fluent.
  */
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import sharp from 'sharp';
 import { RIBBON_ICONS, ICON_VERSION, iconFileName } from './ribbon-icons.js';
-import { OFFICE_ICON_STYLES } from './ribbon-icon-styles.js';
+import { PALETTES, ICON_PALETTE, ICON_GLYPH_SCALE } from './ribbon-icon-styles.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
@@ -22,45 +22,60 @@ function extractSvgInner(svgContent) {
   return match ? match[1].trim() : '';
 }
 
-function whiteGlyph(svgContent) {
+function gradientGlyph(svgContent, gradientId) {
   let inner = extractSvgInner(svgContent);
   inner = inner.replace(/fill="[^"]*"/gi, '');
   inner = inner.replace(/stroke="[^"]*"/gi, '');
-  inner = inner.replace(/<path/gi, '<path fill="#FFFFFF"');
-  inner = inner.replace(/<circle/gi, '<circle fill="#FFFFFF"');
-  inner = inner.replace(/<rect/gi, '<rect fill="#FFFFFF"');
-  inner = inner.replace(/<polygon/gi, '<polygon fill="#FFFFFF"');
+  inner = inner.replace(/<path/gi, `<path fill="url(#${gradientId})"`);
+  inner = inner.replace(/<circle/gi, `<circle fill="url(#${gradientId})"`);
+  inner = inner.replace(/<rect/gi, `<rect fill="url(#${gradientId})"`);
+  inner = inner.replace(/<polygon/gi, `<polygon fill="url(#${gradientId})"`);
   return inner;
 }
 
-function buildOfficeIconSvg(svgContent, style, iconKey) {
-  const glyph = whiteGlyph(svgContent);
-  const scale = style.glyphScale ?? 0.58;
-  const glyphSize = CANVAS * scale;
-  const offset = (CANVAS - glyphSize) / 2;
+function buildFluentRibbonIconSvg(svgContent, iconKey) {
+  const paletteKey = ICON_PALETTE[iconKey];
+  const colors = PALETTES[paletteKey];
+  if (!colors) {
+    throw new Error(`Palette manquante pour « ${iconKey} »`);
+  }
+
   const uid = iconKey.replace(/[^a-z0-9]/gi, '');
+  const gradMain = `g-main-${uid}`;
+  const gradDepth = `g-depth-${uid}`;
+  const glyph = gradientGlyph(svgContent, gradMain);
+
+  const glyphSize = CANVAS * ICON_GLYPH_SCALE;
+  const offset = (CANVAS - glyphSize) / 2;
+  const scale = glyphSize / 24;
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${CANVAS}" height="${CANVAS}" viewBox="0 0 ${CANVAS} ${CANVAS}">
   <defs>
-    <linearGradient id="bg-${uid}" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="${style.gradientStart}"/>
-      <stop offset="100%" stop-color="${style.gradientEnd}"/>
+    <linearGradient id="${gradMain}" x1="18%" y1="8%" x2="82%" y2="92%">
+      <stop offset="0%" stop-color="${colors.light}"/>
+      <stop offset="48%" stop-color="${colors.mid}"/>
+      <stop offset="100%" stop-color="${colors.dark}"/>
     </linearGradient>
-    <linearGradient id="hi-${uid}" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.35"/>
-      <stop offset="55%" stop-color="#FFFFFF" stop-opacity="0.08"/>
-      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    <linearGradient id="${gradDepth}" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.28"/>
+      <stop offset="42%" stop-color="#FFFFFF" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.12"/>
     </linearGradient>
-    <filter id="sh-${uid}" x="-20%" y="-10%" width="140%" height="150%">
-      <feDropShadow dx="0" dy="1.2" stdDeviation="1.1" flood-color="#000000" flood-opacity="0.22"/>
+    <filter id="sh-${uid}" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="0.6" stdDeviation="0.45" flood-color="${colors.dark}" flood-opacity="0.28"/>
     </filter>
   </defs>
-  <rect x="1.5" y="2.5" width="29" height="29" rx="7.5" fill="#000000" opacity="0.1"/>
-  <rect x="1" y="1" width="30" height="30" rx="7.5" fill="url(#bg-${uid})" filter="url(#sh-${uid})"/>
-  <rect x="1" y="1" width="30" height="15" rx="7.5" fill="url(#hi-${uid})"/>
-  <g transform="translate(${offset}, ${offset}) scale(${glyphSize / 24})">
-    ${glyph}
+  <g filter="url(#sh-${uid})">
+    <g transform="translate(${offset + 0.3}, ${offset + 0.55}) scale(${scale})" opacity="0.22">
+      ${glyph.replaceAll(`url(#${gradMain})`, colors.dark)}
+    </g>
+    <g transform="translate(${offset}, ${offset}) scale(${scale})">
+      ${glyph}
+    </g>
+    <g transform="translate(${offset}, ${offset}) scale(${scale})" style="mix-blend-mode: overlay" opacity="0.35">
+      <rect x="0" y="0" width="24" height="11" fill="url(#${gradDepth})"/>
+    </g>
   </g>
 </svg>`;
 }
@@ -77,18 +92,13 @@ function cleanObsoleteIcons() {
 }
 
 async function renderPng(svgFile, iconKey, size) {
-  const style = OFFICE_ICON_STYLES[iconKey];
-  if (!style) {
-    throw new Error(`Style manquant pour l'icône « ${iconKey} »`);
-  }
-
   const svgPath = path.join(SVG_DIR, svgFile);
   if (!fs.existsSync(svgPath)) {
     throw new Error(`SVG introuvable : ${svgPath}`);
   }
 
   const rawSvg = fs.readFileSync(svgPath, 'utf8');
-  const compositeSvg = buildOfficeIconSvg(rawSvg, style, iconKey);
+  const compositeSvg = buildFluentRibbonIconSvg(rawSvg, iconKey);
 
   const pngBuffer = await sharp(Buffer.from(compositeSvg), { density: 300 })
     .resize(size, size, { fit: 'fill', background: { r: 0, g: 0, b: 0, alpha: 0 } })
@@ -117,7 +127,7 @@ async function main() {
     }
   }
 
-  console.log(`\n✅ ${count} icônes PNG colorées (${ICON_VERSION}) dans public/assets/`);
+  console.log(`\n✅ ${count} icônes PNG Fluent Office (${ICON_VERSION}) dans public/assets/`);
 }
 
 main().catch((err) => {

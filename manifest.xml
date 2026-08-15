@@ -7,13 +7,13 @@
   xsi:type="TaskPaneApp">
 
   <Id>11111111-2222-3333-4444-555555555556</Id>
-  <Version>3.3.0.0</Version>
+  <Version>3.4.0.0</Version>
   <ProviderName>Smart Cleaner AI</ProviderName>
   <DefaultLocale>fr-FR</DefaultLocale>
   <DisplayName DefaultValue="Smart Cleaner AI"/>
   <Description DefaultValue="Nettoyage et restructuration de données intelligent propulsé par IA."/>
-  <IconUrl DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-32-v3.png"/>
-  <HighResolutionIconUrl DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-80-v3.png"/>
+  <IconUrl DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-32-v4.png"/>
+  <HighResolutionIconUrl DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-80-v4.png"/>
   <SupportUrl DefaultValue="https://mes-outils-excel.vercel.app"/>
 
   <AppDomains>
@@ -474,75 +474,75 @@
 
     <Resources>
       <bt:Images>
-        <bt:Image id="Icon.open.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-open-16-v3.png"/>
-        <bt:Image id="Icon.open.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-open-32-v3.png"/>
-        <bt:Image id="Icon.open.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-open-80-v3.png"/>
-        <bt:Image id="Icon.import.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-16-v3.png"/>
-        <bt:Image id="Icon.import.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-32-v3.png"/>
-        <bt:Image id="Icon.import.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-80-v3.png"/>
-        <bt:Image id="Icon.scan.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-scan-16-v3.png"/>
-        <bt:Image id="Icon.scan.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-scan-32-v3.png"/>
-        <bt:Image id="Icon.scan.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-scan-80-v3.png"/>
-        <bt:Image id="Icon.columns.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-columns-16-v3.png"/>
-        <bt:Image id="Icon.columns.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-columns-32-v3.png"/>
-        <bt:Image id="Icon.columns.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-columns-80-v3.png"/>
-        <bt:Image id="Icon.rows.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-rows-16-v3.png"/>
-        <bt:Image id="Icon.rows.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-rows-32-v3.png"/>
-        <bt:Image id="Icon.rows.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-rows-80-v3.png"/>
-        <bt:Image id="Icon.merge.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-merge-16-v3.png"/>
-        <bt:Image id="Icon.merge.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-merge-32-v3.png"/>
-        <bt:Image id="Icon.merge.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-merge-80-v3.png"/>
-        <bt:Image id="Icon.append.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-append-16-v3.png"/>
-        <bt:Image id="Icon.append.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-append-32-v3.png"/>
-        <bt:Image id="Icon.append.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-append-80-v3.png"/>
-        <bt:Image id="Icon.reapply.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-reapply-16-v3.png"/>
-        <bt:Image id="Icon.reapply.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-reapply-32-v3.png"/>
-        <bt:Image id="Icon.reapply.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-reapply-80-v3.png"/>
-        <bt:Image id="Icon.watch-folder.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-watch-folder-16-v3.png"/>
-        <bt:Image id="Icon.watch-folder.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-watch-folder-32-v3.png"/>
-        <bt:Image id="Icon.watch-folder.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-watch-folder-80-v3.png"/>
-        <bt:Image id="Icon.app.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-16-v3.png"/>
-        <bt:Image id="Icon.app.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-32-v3.png"/>
-        <bt:Image id="Icon.app.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-80-v3.png"/>
-        <bt:Image id="Icon.import-file.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-file-16-v3.png"/>
-        <bt:Image id="Icon.import-file.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-file-32-v3.png"/>
-        <bt:Image id="Icon.import-file.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-file-80-v3.png"/>
-        <bt:Image id="Icon.import-folder.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-folder-16-v3.png"/>
-        <bt:Image id="Icon.import-folder.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-folder-32-v3.png"/>
-        <bt:Image id="Icon.import-folder.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-folder-80-v3.png"/>
-        <bt:Image id="Icon.import-sql.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-sql-16-v3.png"/>
-        <bt:Image id="Icon.import-sql.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-sql-32-v3.png"/>
-        <bt:Image id="Icon.import-sql.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-sql-80-v3.png"/>
-        <bt:Image id="Icon.import-web.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-web-16-v3.png"/>
-        <bt:Image id="Icon.import-web.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-web-32-v3.png"/>
-        <bt:Image id="Icon.import-web.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-web-80-v3.png"/>
-        <bt:Image id="Icon.col-separate.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-separate-16-v3.png"/>
-        <bt:Image id="Icon.col-separate.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-separate-32-v3.png"/>
-        <bt:Image id="Icon.col-separate.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-separate-80-v3.png"/>
-        <bt:Image id="Icon.col-merge-text.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-merge-text-16-v3.png"/>
-        <bt:Image id="Icon.col-merge-text.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-merge-text-32-v3.png"/>
-        <bt:Image id="Icon.col-merge-text.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-merge-text-80-v3.png"/>
-        <bt:Image id="Icon.col-extract.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-extract-16-v3.png"/>
-        <bt:Image id="Icon.col-extract.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-extract-32-v3.png"/>
-        <bt:Image id="Icon.col-extract.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-extract-80-v3.png"/>
-        <bt:Image id="Icon.col-anonymize.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-anonymize-16-v3.png"/>
-        <bt:Image id="Icon.col-anonymize.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-anonymize-32-v3.png"/>
-        <bt:Image id="Icon.col-anonymize.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-anonymize-80-v3.png"/>
-        <bt:Image id="Icon.col-dates.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-dates-16-v3.png"/>
-        <bt:Image id="Icon.col-dates.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-dates-32-v3.png"/>
-        <bt:Image id="Icon.col-dates.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-dates-80-v3.png"/>
-        <bt:Image id="Icon.col-calculated.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-calculated-16-v3.png"/>
-        <bt:Image id="Icon.col-calculated.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-calculated-32-v3.png"/>
-        <bt:Image id="Icon.col-calculated.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-calculated-80-v3.png"/>
-        <bt:Image id="Icon.col-by-example.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-by-example-16-v3.png"/>
-        <bt:Image id="Icon.col-by-example.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-by-example-32-v3.png"/>
-        <bt:Image id="Icon.col-by-example.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-by-example-80-v3.png"/>
-        <bt:Image id="Icon.row-propagate.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-propagate-16-v3.png"/>
-        <bt:Image id="Icon.row-propagate.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-propagate-32-v3.png"/>
-        <bt:Image id="Icon.row-propagate.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-propagate-80-v3.png"/>
-        <bt:Image id="Icon.row-isolate.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-isolate-16-v3.png"/>
-        <bt:Image id="Icon.row-isolate.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-isolate-32-v3.png"/>
-        <bt:Image id="Icon.row-isolate.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-isolate-80-v3.png"/>
+        <bt:Image id="Icon.open.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-open-16-v4.png"/>
+        <bt:Image id="Icon.open.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-open-32-v4.png"/>
+        <bt:Image id="Icon.open.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-open-80-v4.png"/>
+        <bt:Image id="Icon.import.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-16-v4.png"/>
+        <bt:Image id="Icon.import.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-32-v4.png"/>
+        <bt:Image id="Icon.import.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-80-v4.png"/>
+        <bt:Image id="Icon.scan.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-scan-16-v4.png"/>
+        <bt:Image id="Icon.scan.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-scan-32-v4.png"/>
+        <bt:Image id="Icon.scan.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-scan-80-v4.png"/>
+        <bt:Image id="Icon.columns.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-columns-16-v4.png"/>
+        <bt:Image id="Icon.columns.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-columns-32-v4.png"/>
+        <bt:Image id="Icon.columns.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-columns-80-v4.png"/>
+        <bt:Image id="Icon.rows.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-rows-16-v4.png"/>
+        <bt:Image id="Icon.rows.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-rows-32-v4.png"/>
+        <bt:Image id="Icon.rows.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-rows-80-v4.png"/>
+        <bt:Image id="Icon.merge.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-merge-16-v4.png"/>
+        <bt:Image id="Icon.merge.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-merge-32-v4.png"/>
+        <bt:Image id="Icon.merge.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-merge-80-v4.png"/>
+        <bt:Image id="Icon.append.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-append-16-v4.png"/>
+        <bt:Image id="Icon.append.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-append-32-v4.png"/>
+        <bt:Image id="Icon.append.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-append-80-v4.png"/>
+        <bt:Image id="Icon.reapply.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-reapply-16-v4.png"/>
+        <bt:Image id="Icon.reapply.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-reapply-32-v4.png"/>
+        <bt:Image id="Icon.reapply.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-reapply-80-v4.png"/>
+        <bt:Image id="Icon.watch-folder.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-watch-folder-16-v4.png"/>
+        <bt:Image id="Icon.watch-folder.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-watch-folder-32-v4.png"/>
+        <bt:Image id="Icon.watch-folder.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-watch-folder-80-v4.png"/>
+        <bt:Image id="Icon.app.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-16-v4.png"/>
+        <bt:Image id="Icon.app.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-32-v4.png"/>
+        <bt:Image id="Icon.app.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-80-v4.png"/>
+        <bt:Image id="Icon.import-file.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-file-16-v4.png"/>
+        <bt:Image id="Icon.import-file.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-file-32-v4.png"/>
+        <bt:Image id="Icon.import-file.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-file-80-v4.png"/>
+        <bt:Image id="Icon.import-folder.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-folder-16-v4.png"/>
+        <bt:Image id="Icon.import-folder.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-folder-32-v4.png"/>
+        <bt:Image id="Icon.import-folder.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-folder-80-v4.png"/>
+        <bt:Image id="Icon.import-sql.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-sql-16-v4.png"/>
+        <bt:Image id="Icon.import-sql.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-sql-32-v4.png"/>
+        <bt:Image id="Icon.import-sql.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-sql-80-v4.png"/>
+        <bt:Image id="Icon.import-web.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-web-16-v4.png"/>
+        <bt:Image id="Icon.import-web.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-web-32-v4.png"/>
+        <bt:Image id="Icon.import-web.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-web-80-v4.png"/>
+        <bt:Image id="Icon.col-separate.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-separate-16-v4.png"/>
+        <bt:Image id="Icon.col-separate.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-separate-32-v4.png"/>
+        <bt:Image id="Icon.col-separate.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-separate-80-v4.png"/>
+        <bt:Image id="Icon.col-merge-text.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-merge-text-16-v4.png"/>
+        <bt:Image id="Icon.col-merge-text.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-merge-text-32-v4.png"/>
+        <bt:Image id="Icon.col-merge-text.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-merge-text-80-v4.png"/>
+        <bt:Image id="Icon.col-extract.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-extract-16-v4.png"/>
+        <bt:Image id="Icon.col-extract.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-extract-32-v4.png"/>
+        <bt:Image id="Icon.col-extract.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-extract-80-v4.png"/>
+        <bt:Image id="Icon.col-anonymize.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-anonymize-16-v4.png"/>
+        <bt:Image id="Icon.col-anonymize.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-anonymize-32-v4.png"/>
+        <bt:Image id="Icon.col-anonymize.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-anonymize-80-v4.png"/>
+        <bt:Image id="Icon.col-dates.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-dates-16-v4.png"/>
+        <bt:Image id="Icon.col-dates.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-dates-32-v4.png"/>
+        <bt:Image id="Icon.col-dates.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-dates-80-v4.png"/>
+        <bt:Image id="Icon.col-calculated.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-calculated-16-v4.png"/>
+        <bt:Image id="Icon.col-calculated.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-calculated-32-v4.png"/>
+        <bt:Image id="Icon.col-calculated.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-calculated-80-v4.png"/>
+        <bt:Image id="Icon.col-by-example.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-by-example-16-v4.png"/>
+        <bt:Image id="Icon.col-by-example.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-by-example-32-v4.png"/>
+        <bt:Image id="Icon.col-by-example.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-by-example-80-v4.png"/>
+        <bt:Image id="Icon.row-propagate.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-propagate-16-v4.png"/>
+        <bt:Image id="Icon.row-propagate.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-propagate-32-v4.png"/>
+        <bt:Image id="Icon.row-propagate.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-propagate-80-v4.png"/>
+        <bt:Image id="Icon.row-isolate.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-isolate-16-v4.png"/>
+        <bt:Image id="Icon.row-isolate.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-isolate-32-v4.png"/>
+        <bt:Image id="Icon.row-isolate.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-isolate-80-v4.png"/>
       </bt:Images>
 
       <bt:Urls>
