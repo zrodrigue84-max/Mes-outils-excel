@@ -12,12 +12,12 @@
   <DefaultLocale>fr-FR</DefaultLocale>
   <DisplayName DefaultValue="Smart Cleaner AI"/>
   <Description DefaultValue="Nettoyage et restructuration de données intelligent propulsé par IA."/>
-  <IconUrl DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-32-v3.png"/>
-  <HighResolutionIconUrl DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-80-v3.png"/>
-  <SupportUrl DefaultValue="https://mes-outils-excel.vercel.app"/>
+  <IconUrl DefaultValue="https://localhost:3000/assets/icon-32-v3.png"/>
+  <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-80-v3.png"/>
+  <SupportUrl DefaultValue="https://localhost:3000"/>
 
   <AppDomains>
-    <AppDomain>https://mes-outils-excel.vercel.app</AppDomain>
+    <AppDomain>https://localhost:3000</AppDomain>
   </AppDomains>
 
   <Hosts>
@@ -25,7 +25,7 @@
   </Hosts>
 
   <DefaultSettings>
-    <SourceLocation DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=home"/>
+    <SourceLocation DefaultValue="https://localhost:3000/taskpane.html?view=home"/>
   </DefaultSettings>
 
   <Permissions>ReadWriteDocument</Permissions>
@@ -474,98 +474,98 @@
 
     <Resources>
       <bt:Images>
-        <bt:Image id="Icon.open.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-open-16-v3.png"/>
-        <bt:Image id="Icon.open.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-open-32-v3.png"/>
-        <bt:Image id="Icon.open.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-open-80-v3.png"/>
-        <bt:Image id="Icon.import.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-16-v3.png"/>
-        <bt:Image id="Icon.import.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-32-v3.png"/>
-        <bt:Image id="Icon.import.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-80-v3.png"/>
-        <bt:Image id="Icon.scan.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-scan-16-v3.png"/>
-        <bt:Image id="Icon.scan.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-scan-32-v3.png"/>
-        <bt:Image id="Icon.scan.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-scan-80-v3.png"/>
-        <bt:Image id="Icon.columns.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-columns-16-v3.png"/>
-        <bt:Image id="Icon.columns.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-columns-32-v3.png"/>
-        <bt:Image id="Icon.columns.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-columns-80-v3.png"/>
-        <bt:Image id="Icon.rows.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-rows-16-v3.png"/>
-        <bt:Image id="Icon.rows.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-rows-32-v3.png"/>
-        <bt:Image id="Icon.rows.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-rows-80-v3.png"/>
-        <bt:Image id="Icon.merge.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-merge-16-v3.png"/>
-        <bt:Image id="Icon.merge.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-merge-32-v3.png"/>
-        <bt:Image id="Icon.merge.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-merge-80-v3.png"/>
-        <bt:Image id="Icon.append.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-append-16-v3.png"/>
-        <bt:Image id="Icon.append.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-append-32-v3.png"/>
-        <bt:Image id="Icon.append.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-append-80-v3.png"/>
-        <bt:Image id="Icon.reapply.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-reapply-16-v3.png"/>
-        <bt:Image id="Icon.reapply.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-reapply-32-v3.png"/>
-        <bt:Image id="Icon.reapply.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-reapply-80-v3.png"/>
-        <bt:Image id="Icon.watch-folder.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-watch-folder-16-v3.png"/>
-        <bt:Image id="Icon.watch-folder.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-watch-folder-32-v3.png"/>
-        <bt:Image id="Icon.watch-folder.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-watch-folder-80-v3.png"/>
-        <bt:Image id="Icon.app.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-16-v3.png"/>
-        <bt:Image id="Icon.app.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-32-v3.png"/>
-        <bt:Image id="Icon.app.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-80-v3.png"/>
-        <bt:Image id="Icon.import-file.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-file-16-v3.png"/>
-        <bt:Image id="Icon.import-file.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-file-32-v3.png"/>
-        <bt:Image id="Icon.import-file.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-file-80-v3.png"/>
-        <bt:Image id="Icon.import-folder.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-folder-16-v3.png"/>
-        <bt:Image id="Icon.import-folder.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-folder-32-v3.png"/>
-        <bt:Image id="Icon.import-folder.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-folder-80-v3.png"/>
-        <bt:Image id="Icon.import-sql.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-sql-16-v3.png"/>
-        <bt:Image id="Icon.import-sql.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-sql-32-v3.png"/>
-        <bt:Image id="Icon.import-sql.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-sql-80-v3.png"/>
-        <bt:Image id="Icon.import-web.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-web-16-v3.png"/>
-        <bt:Image id="Icon.import-web.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-web-32-v3.png"/>
-        <bt:Image id="Icon.import-web.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-web-80-v3.png"/>
-        <bt:Image id="Icon.col-separate.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-separate-16-v3.png"/>
-        <bt:Image id="Icon.col-separate.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-separate-32-v3.png"/>
-        <bt:Image id="Icon.col-separate.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-separate-80-v3.png"/>
-        <bt:Image id="Icon.col-merge-text.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-merge-text-16-v3.png"/>
-        <bt:Image id="Icon.col-merge-text.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-merge-text-32-v3.png"/>
-        <bt:Image id="Icon.col-merge-text.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-merge-text-80-v3.png"/>
-        <bt:Image id="Icon.col-extract.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-extract-16-v3.png"/>
-        <bt:Image id="Icon.col-extract.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-extract-32-v3.png"/>
-        <bt:Image id="Icon.col-extract.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-extract-80-v3.png"/>
-        <bt:Image id="Icon.col-anonymize.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-anonymize-16-v3.png"/>
-        <bt:Image id="Icon.col-anonymize.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-anonymize-32-v3.png"/>
-        <bt:Image id="Icon.col-anonymize.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-anonymize-80-v3.png"/>
-        <bt:Image id="Icon.col-dates.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-dates-16-v3.png"/>
-        <bt:Image id="Icon.col-dates.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-dates-32-v3.png"/>
-        <bt:Image id="Icon.col-dates.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-dates-80-v3.png"/>
-        <bt:Image id="Icon.col-calculated.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-calculated-16-v3.png"/>
-        <bt:Image id="Icon.col-calculated.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-calculated-32-v3.png"/>
-        <bt:Image id="Icon.col-calculated.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-calculated-80-v3.png"/>
-        <bt:Image id="Icon.col-by-example.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-by-example-16-v3.png"/>
-        <bt:Image id="Icon.col-by-example.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-by-example-32-v3.png"/>
-        <bt:Image id="Icon.col-by-example.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-by-example-80-v3.png"/>
-        <bt:Image id="Icon.row-propagate.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-propagate-16-v3.png"/>
-        <bt:Image id="Icon.row-propagate.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-propagate-32-v3.png"/>
-        <bt:Image id="Icon.row-propagate.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-propagate-80-v3.png"/>
-        <bt:Image id="Icon.row-isolate.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-isolate-16-v3.png"/>
-        <bt:Image id="Icon.row-isolate.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-isolate-32-v3.png"/>
-        <bt:Image id="Icon.row-isolate.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-isolate-80-v3.png"/>
+        <bt:Image id="Icon.open.16" DefaultValue="https://localhost:3000/assets/icon-open-16-v3.png"/>
+        <bt:Image id="Icon.open.32" DefaultValue="https://localhost:3000/assets/icon-open-32-v3.png"/>
+        <bt:Image id="Icon.open.80" DefaultValue="https://localhost:3000/assets/icon-open-80-v3.png"/>
+        <bt:Image id="Icon.import.16" DefaultValue="https://localhost:3000/assets/icon-import-16-v3.png"/>
+        <bt:Image id="Icon.import.32" DefaultValue="https://localhost:3000/assets/icon-import-32-v3.png"/>
+        <bt:Image id="Icon.import.80" DefaultValue="https://localhost:3000/assets/icon-import-80-v3.png"/>
+        <bt:Image id="Icon.scan.16" DefaultValue="https://localhost:3000/assets/icon-scan-16-v3.png"/>
+        <bt:Image id="Icon.scan.32" DefaultValue="https://localhost:3000/assets/icon-scan-32-v3.png"/>
+        <bt:Image id="Icon.scan.80" DefaultValue="https://localhost:3000/assets/icon-scan-80-v3.png"/>
+        <bt:Image id="Icon.columns.16" DefaultValue="https://localhost:3000/assets/icon-columns-16-v3.png"/>
+        <bt:Image id="Icon.columns.32" DefaultValue="https://localhost:3000/assets/icon-columns-32-v3.png"/>
+        <bt:Image id="Icon.columns.80" DefaultValue="https://localhost:3000/assets/icon-columns-80-v3.png"/>
+        <bt:Image id="Icon.rows.16" DefaultValue="https://localhost:3000/assets/icon-rows-16-v3.png"/>
+        <bt:Image id="Icon.rows.32" DefaultValue="https://localhost:3000/assets/icon-rows-32-v3.png"/>
+        <bt:Image id="Icon.rows.80" DefaultValue="https://localhost:3000/assets/icon-rows-80-v3.png"/>
+        <bt:Image id="Icon.merge.16" DefaultValue="https://localhost:3000/assets/icon-merge-16-v3.png"/>
+        <bt:Image id="Icon.merge.32" DefaultValue="https://localhost:3000/assets/icon-merge-32-v3.png"/>
+        <bt:Image id="Icon.merge.80" DefaultValue="https://localhost:3000/assets/icon-merge-80-v3.png"/>
+        <bt:Image id="Icon.append.16" DefaultValue="https://localhost:3000/assets/icon-append-16-v3.png"/>
+        <bt:Image id="Icon.append.32" DefaultValue="https://localhost:3000/assets/icon-append-32-v3.png"/>
+        <bt:Image id="Icon.append.80" DefaultValue="https://localhost:3000/assets/icon-append-80-v3.png"/>
+        <bt:Image id="Icon.reapply.16" DefaultValue="https://localhost:3000/assets/icon-reapply-16-v3.png"/>
+        <bt:Image id="Icon.reapply.32" DefaultValue="https://localhost:3000/assets/icon-reapply-32-v3.png"/>
+        <bt:Image id="Icon.reapply.80" DefaultValue="https://localhost:3000/assets/icon-reapply-80-v3.png"/>
+        <bt:Image id="Icon.watch-folder.16" DefaultValue="https://localhost:3000/assets/icon-watch-folder-16-v3.png"/>
+        <bt:Image id="Icon.watch-folder.32" DefaultValue="https://localhost:3000/assets/icon-watch-folder-32-v3.png"/>
+        <bt:Image id="Icon.watch-folder.80" DefaultValue="https://localhost:3000/assets/icon-watch-folder-80-v3.png"/>
+        <bt:Image id="Icon.app.16" DefaultValue="https://localhost:3000/assets/icon-16-v3.png"/>
+        <bt:Image id="Icon.app.32" DefaultValue="https://localhost:3000/assets/icon-32-v3.png"/>
+        <bt:Image id="Icon.app.80" DefaultValue="https://localhost:3000/assets/icon-80-v3.png"/>
+        <bt:Image id="Icon.import-file.16" DefaultValue="https://localhost:3000/assets/icon-import-file-16-v3.png"/>
+        <bt:Image id="Icon.import-file.32" DefaultValue="https://localhost:3000/assets/icon-import-file-32-v3.png"/>
+        <bt:Image id="Icon.import-file.80" DefaultValue="https://localhost:3000/assets/icon-import-file-80-v3.png"/>
+        <bt:Image id="Icon.import-folder.16" DefaultValue="https://localhost:3000/assets/icon-import-folder-16-v3.png"/>
+        <bt:Image id="Icon.import-folder.32" DefaultValue="https://localhost:3000/assets/icon-import-folder-32-v3.png"/>
+        <bt:Image id="Icon.import-folder.80" DefaultValue="https://localhost:3000/assets/icon-import-folder-80-v3.png"/>
+        <bt:Image id="Icon.import-sql.16" DefaultValue="https://localhost:3000/assets/icon-import-sql-16-v3.png"/>
+        <bt:Image id="Icon.import-sql.32" DefaultValue="https://localhost:3000/assets/icon-import-sql-32-v3.png"/>
+        <bt:Image id="Icon.import-sql.80" DefaultValue="https://localhost:3000/assets/icon-import-sql-80-v3.png"/>
+        <bt:Image id="Icon.import-web.16" DefaultValue="https://localhost:3000/assets/icon-import-web-16-v3.png"/>
+        <bt:Image id="Icon.import-web.32" DefaultValue="https://localhost:3000/assets/icon-import-web-32-v3.png"/>
+        <bt:Image id="Icon.import-web.80" DefaultValue="https://localhost:3000/assets/icon-import-web-80-v3.png"/>
+        <bt:Image id="Icon.col-separate.16" DefaultValue="https://localhost:3000/assets/icon-col-separate-16-v3.png"/>
+        <bt:Image id="Icon.col-separate.32" DefaultValue="https://localhost:3000/assets/icon-col-separate-32-v3.png"/>
+        <bt:Image id="Icon.col-separate.80" DefaultValue="https://localhost:3000/assets/icon-col-separate-80-v3.png"/>
+        <bt:Image id="Icon.col-merge-text.16" DefaultValue="https://localhost:3000/assets/icon-col-merge-text-16-v3.png"/>
+        <bt:Image id="Icon.col-merge-text.32" DefaultValue="https://localhost:3000/assets/icon-col-merge-text-32-v3.png"/>
+        <bt:Image id="Icon.col-merge-text.80" DefaultValue="https://localhost:3000/assets/icon-col-merge-text-80-v3.png"/>
+        <bt:Image id="Icon.col-extract.16" DefaultValue="https://localhost:3000/assets/icon-col-extract-16-v3.png"/>
+        <bt:Image id="Icon.col-extract.32" DefaultValue="https://localhost:3000/assets/icon-col-extract-32-v3.png"/>
+        <bt:Image id="Icon.col-extract.80" DefaultValue="https://localhost:3000/assets/icon-col-extract-80-v3.png"/>
+        <bt:Image id="Icon.col-anonymize.16" DefaultValue="https://localhost:3000/assets/icon-col-anonymize-16-v3.png"/>
+        <bt:Image id="Icon.col-anonymize.32" DefaultValue="https://localhost:3000/assets/icon-col-anonymize-32-v3.png"/>
+        <bt:Image id="Icon.col-anonymize.80" DefaultValue="https://localhost:3000/assets/icon-col-anonymize-80-v3.png"/>
+        <bt:Image id="Icon.col-dates.16" DefaultValue="https://localhost:3000/assets/icon-col-dates-16-v3.png"/>
+        <bt:Image id="Icon.col-dates.32" DefaultValue="https://localhost:3000/assets/icon-col-dates-32-v3.png"/>
+        <bt:Image id="Icon.col-dates.80" DefaultValue="https://localhost:3000/assets/icon-col-dates-80-v3.png"/>
+        <bt:Image id="Icon.col-calculated.16" DefaultValue="https://localhost:3000/assets/icon-col-calculated-16-v3.png"/>
+        <bt:Image id="Icon.col-calculated.32" DefaultValue="https://localhost:3000/assets/icon-col-calculated-32-v3.png"/>
+        <bt:Image id="Icon.col-calculated.80" DefaultValue="https://localhost:3000/assets/icon-col-calculated-80-v3.png"/>
+        <bt:Image id="Icon.col-by-example.16" DefaultValue="https://localhost:3000/assets/icon-col-by-example-16-v3.png"/>
+        <bt:Image id="Icon.col-by-example.32" DefaultValue="https://localhost:3000/assets/icon-col-by-example-32-v3.png"/>
+        <bt:Image id="Icon.col-by-example.80" DefaultValue="https://localhost:3000/assets/icon-col-by-example-80-v3.png"/>
+        <bt:Image id="Icon.row-propagate.16" DefaultValue="https://localhost:3000/assets/icon-row-propagate-16-v3.png"/>
+        <bt:Image id="Icon.row-propagate.32" DefaultValue="https://localhost:3000/assets/icon-row-propagate-32-v3.png"/>
+        <bt:Image id="Icon.row-propagate.80" DefaultValue="https://localhost:3000/assets/icon-row-propagate-80-v3.png"/>
+        <bt:Image id="Icon.row-isolate.16" DefaultValue="https://localhost:3000/assets/icon-row-isolate-16-v3.png"/>
+        <bt:Image id="Icon.row-isolate.32" DefaultValue="https://localhost:3000/assets/icon-row-isolate-32-v3.png"/>
+        <bt:Image id="Icon.row-isolate.80" DefaultValue="https://localhost:3000/assets/icon-row-isolate-80-v3.png"/>
       </bt:Images>
 
       <bt:Urls>
-        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://mes-outils-excel.vercel.app"/>
-        <bt:Url id="Url.Open" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=home"/>
-        <bt:Url id="Url.ImportFile" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=importer&amp;action=file"/>
-        <bt:Url id="Url.ImportFolder" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=importer&amp;action=folder"/>
-        <bt:Url id="Url.ImportSql" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=importer&amp;action=sql"/>
-        <bt:Url id="Url.ImportWeb" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=importer&amp;action=web"/>
-        <bt:Url id="Url.BtnScanner" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=diagnostic&amp;action=scan"/>
-        <bt:Url id="Url.ColSeparate" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=transformation&amp;action=col-separate"/>
-        <bt:Url id="Url.ColMergeText" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=transformation&amp;action=col-merge-text"/>
-        <bt:Url id="Url.ColExtract" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=transformation&amp;action=col-extract"/>
-        <bt:Url id="Url.ColAnonymize" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=transformation&amp;action=col-anonymize"/>
-        <bt:Url id="Url.ColDates" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=transformation&amp;action=col-dates"/>
-        <bt:Url id="Url.ColCalculated" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=transformation&amp;action=col-calculated"/>
-        <bt:Url id="Url.ColByExample" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=transformation&amp;action=col-by-example"/>
-        <bt:Url id="Url.RowPropagate" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=transformation&amp;action=row-propagate"/>
-        <bt:Url id="Url.RowIsolate" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=transformation&amp;action=row-isolate"/>
-        <bt:Url id="Url.BtnMerge" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=combiner&amp;action=merge"/>
-        <bt:Url id="Url.BtnAppend" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=combiner&amp;action=append"/>
-        <bt:Url id="Url.BtnReapply" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=automation&amp;action=reapply"/>
-        <bt:Url id="Url.BtnWatchFolder" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=automation&amp;action=watch-folder"/>
+        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://localhost:3000"/>
+        <bt:Url id="Url.Open" DefaultValue="https://localhost:3000/taskpane.html?view=home"/>
+        <bt:Url id="Url.ImportFile" DefaultValue="https://localhost:3000/taskpane.html?view=importer&amp;action=file"/>
+        <bt:Url id="Url.ImportFolder" DefaultValue="https://localhost:3000/taskpane.html?view=importer&amp;action=folder"/>
+        <bt:Url id="Url.ImportSql" DefaultValue="https://localhost:3000/taskpane.html?view=importer&amp;action=sql"/>
+        <bt:Url id="Url.ImportWeb" DefaultValue="https://localhost:3000/taskpane.html?view=importer&amp;action=web"/>
+        <bt:Url id="Url.BtnScanner" DefaultValue="https://localhost:3000/taskpane.html?view=diagnostic&amp;action=scan"/>
+        <bt:Url id="Url.ColSeparate" DefaultValue="https://localhost:3000/taskpane.html?view=transformation&amp;action=col-separate"/>
+        <bt:Url id="Url.ColMergeText" DefaultValue="https://localhost:3000/taskpane.html?view=transformation&amp;action=col-merge-text"/>
+        <bt:Url id="Url.ColExtract" DefaultValue="https://localhost:3000/taskpane.html?view=transformation&amp;action=col-extract"/>
+        <bt:Url id="Url.ColAnonymize" DefaultValue="https://localhost:3000/taskpane.html?view=transformation&amp;action=col-anonymize"/>
+        <bt:Url id="Url.ColDates" DefaultValue="https://localhost:3000/taskpane.html?view=transformation&amp;action=col-dates"/>
+        <bt:Url id="Url.ColCalculated" DefaultValue="https://localhost:3000/taskpane.html?view=transformation&amp;action=col-calculated"/>
+        <bt:Url id="Url.ColByExample" DefaultValue="https://localhost:3000/taskpane.html?view=transformation&amp;action=col-by-example"/>
+        <bt:Url id="Url.RowPropagate" DefaultValue="https://localhost:3000/taskpane.html?view=transformation&amp;action=row-propagate"/>
+        <bt:Url id="Url.RowIsolate" DefaultValue="https://localhost:3000/taskpane.html?view=transformation&amp;action=row-isolate"/>
+        <bt:Url id="Url.BtnMerge" DefaultValue="https://localhost:3000/taskpane.html?view=combiner&amp;action=merge"/>
+        <bt:Url id="Url.BtnAppend" DefaultValue="https://localhost:3000/taskpane.html?view=combiner&amp;action=append"/>
+        <bt:Url id="Url.BtnReapply" DefaultValue="https://localhost:3000/taskpane.html?view=automation&amp;action=reapply"/>
+        <bt:Url id="Url.BtnWatchFolder" DefaultValue="https://localhost:3000/taskpane.html?view=automation&amp;action=watch-folder"/>
       </bt:Urls>
 
       <bt:ShortStrings>

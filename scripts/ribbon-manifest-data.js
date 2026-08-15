@@ -5,7 +5,7 @@
 
 export const RIBBON_BASE = {
   id: '11111111-2222-3333-4444-555555555556',
-  version: '3.2.0.0',
+  version: '3.3.0.0',
   taskpaneId: 'SmartCleanerPane',
 };
 
