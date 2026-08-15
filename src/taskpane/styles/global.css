@@ -1,0 +1,14 @@
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  min-width: 420px;
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}

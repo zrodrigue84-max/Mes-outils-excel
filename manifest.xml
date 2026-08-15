@@ -7,13 +7,13 @@
   xsi:type="TaskPaneApp">
 
   <Id>11111111-2222-3333-4444-555555555556</Id>
-  <Version>3.0.0.0</Version>
+  <Version>3.2.0.0</Version>
   <ProviderName>Smart Cleaner AI</ProviderName>
   <DefaultLocale>fr-FR</DefaultLocale>
   <DisplayName DefaultValue="Smart Cleaner AI"/>
   <Description DefaultValue="Nettoyage et restructuration de données intelligent propulsé par IA."/>
-  <IconUrl DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-32.png"/>
-  <HighResolutionIconUrl DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-80.png"/>
+  <IconUrl DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-32-v2.png"/>
+  <HighResolutionIconUrl DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-80-v2.png"/>
   <SupportUrl DefaultValue="https://mes-outils-excel.vercel.app"/>
 
   <AppDomains>
@@ -25,7 +25,7 @@
   </Hosts>
 
   <DefaultSettings>
-    <SourceLocation DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html"/>
+    <SourceLocation DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=home"/>
   </DefaultSettings>
 
   <Permissions>ReadWriteDocument</Permissions>
@@ -42,33 +42,430 @@
 
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
             <CustomTab id="TabSmartCleanerAI">
-              <Label resid="Tab.Label"/>
 
-              <Group id="GroupSmartCleaner">
-                <Label resid="Group.SmartCleaner.Label"/>
-                <Icon>
-                  <bt:Image size="16" resid="Icon.SmartCleaner.16"/>
-                  <bt:Image size="32" resid="Icon.SmartCleaner.32"/>
-                  <bt:Image size="80" resid="Icon.SmartCleaner.80"/>
-                </Icon>
-
-                <Control xsi:type="Button" id="BtnSmartCleanerOuvrir">
-                  <Label resid="Btn.SmartCleaner.Ouvrir.Label"/>
-                  <Supertip>
-                    <Title resid="Btn.SmartCleaner.Ouvrir.Label"/>
-                    <Description resid="Btn.SmartCleaner.Ouvrir.Desc"/>
-                  </Supertip>
+              <Group id="GroupOpen">
+                <Label resid="Lbl.OpenGroup"/>
+                
                   <Icon>
-                    <bt:Image size="16" resid="Icon.SmartCleaner.16"/>
-                    <bt:Image size="32" resid="Icon.SmartCleaner.32"/>
-                    <bt:Image size="80" resid="Icon.SmartCleaner.80"/>
+                    <bt:Image size="16" resid="Icon.open.16"/>
+                    <bt:Image size="32" resid="Icon.open.32"/>
+                    <bt:Image size="80" resid="Icon.open.80"/>
+                  </Icon>
+                <Control xsi:type="Button" id="BtnOpenSmartCleaner">
+                  <Label resid="Lbl.Open"/>
+                  <Supertip>
+                    <Title resid="Lbl.Open"/>
+                    <Description resid="Desc.Open"/>
+                  </Supertip>
+                  
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.open.16"/>
+                    <bt:Image size="32" resid="Icon.open.32"/>
+                    <bt:Image size="80" resid="Icon.open.80"/>
                   </Icon>
                   <Action xsi:type="ShowTaskpane">
-                    <SourceLocation resid="Taskpane.SmartCleaner"/>
+                    <TaskpaneId>SmartCleanerPane</TaskpaneId>
+                    <SourceLocation resid="Url.Open"/>
                   </Action>
                 </Control>
               </Group>
-
+              <Group id="GroupImporter">
+                <Label resid="Lbl.GroupImporter"/>
+                
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.import.16"/>
+                    <bt:Image size="32" resid="Icon.import.32"/>
+                    <bt:Image size="80" resid="Icon.import.80"/>
+                  </Icon>
+                <Control xsi:type="Menu" id="MenuImporter">
+                  <Label resid="Lbl.MenuImporter"/>
+                  <Supertip>
+                    <Title resid="Lbl.MenuImporter"/>
+                    <Description resid="Desc.MenuImporter"/>
+                  </Supertip>
+                  
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.import.16"/>
+                    <bt:Image size="32" resid="Icon.import.32"/>
+                    <bt:Image size="80" resid="Icon.import.80"/>
+                  </Icon>
+                  <Items>
+                    <Item id="ImportFile">
+                      <Label resid="Lbl.ImportFile"/>
+                      <Supertip>
+                        <Title resid="Lbl.ImportFile"/>
+                        <Description resid="Desc.ImportFile"/>
+                      </Supertip>
+                      
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.import-file.16"/>
+                    <bt:Image size="32" resid="Icon.import-file.32"/>
+                    <bt:Image size="80" resid="Icon.import-file.80"/>
+                  </Icon>
+                      <Action xsi:type="ShowTaskpane">
+                        <TaskpaneId>SmartCleanerPane</TaskpaneId>
+                        <SourceLocation resid="Url.ImportFile"/>
+                      </Action>
+                    </Item>
+                    <Item id="ImportFolder">
+                      <Label resid="Lbl.ImportFolder"/>
+                      <Supertip>
+                        <Title resid="Lbl.ImportFolder"/>
+                        <Description resid="Desc.ImportFolder"/>
+                      </Supertip>
+                      
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.import-folder.16"/>
+                    <bt:Image size="32" resid="Icon.import-folder.32"/>
+                    <bt:Image size="80" resid="Icon.import-folder.80"/>
+                  </Icon>
+                      <Action xsi:type="ShowTaskpane">
+                        <TaskpaneId>SmartCleanerPane</TaskpaneId>
+                        <SourceLocation resid="Url.ImportFolder"/>
+                      </Action>
+                    </Item>
+                    <Item id="ImportSql">
+                      <Label resid="Lbl.ImportSql"/>
+                      <Supertip>
+                        <Title resid="Lbl.ImportSql"/>
+                        <Description resid="Desc.ImportSql"/>
+                      </Supertip>
+                      
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.import-sql.16"/>
+                    <bt:Image size="32" resid="Icon.import-sql.32"/>
+                    <bt:Image size="80" resid="Icon.import-sql.80"/>
+                  </Icon>
+                      <Action xsi:type="ShowTaskpane">
+                        <TaskpaneId>SmartCleanerPane</TaskpaneId>
+                        <SourceLocation resid="Url.ImportSql"/>
+                      </Action>
+                    </Item>
+                    <Item id="ImportWeb">
+                      <Label resid="Lbl.ImportWeb"/>
+                      <Supertip>
+                        <Title resid="Lbl.ImportWeb"/>
+                        <Description resid="Desc.ImportWeb"/>
+                      </Supertip>
+                      
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.import-web.16"/>
+                    <bt:Image size="32" resid="Icon.import-web.32"/>
+                    <bt:Image size="80" resid="Icon.import-web.80"/>
+                  </Icon>
+                      <Action xsi:type="ShowTaskpane">
+                        <TaskpaneId>SmartCleanerPane</TaskpaneId>
+                        <SourceLocation resid="Url.ImportWeb"/>
+                      </Action>
+                    </Item>
+                  </Items>
+                </Control>
+              </Group>
+              <Group id="GroupDiagnostic">
+                <Label resid="Lbl.GroupDiagnostic"/>
+                
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.scan.16"/>
+                    <bt:Image size="32" resid="Icon.scan.32"/>
+                    <bt:Image size="80" resid="Icon.scan.80"/>
+                  </Icon>
+                <Control xsi:type="Button" id="BtnScanner">
+                  <Label resid="Lbl.BtnScanner"/>
+                  <Supertip>
+                    <Title resid="Lbl.BtnScanner"/>
+                    <Description resid="Desc.BtnScanner"/>
+                  </Supertip>
+                  
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.scan.16"/>
+                    <bt:Image size="32" resid="Icon.scan.32"/>
+                    <bt:Image size="80" resid="Icon.scan.80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>SmartCleanerPane</TaskpaneId>
+                    <SourceLocation resid="Url.BtnScanner"/>
+                  </Action>
+                </Control>
+              </Group>
+              <Group id="GroupTransformation">
+                <Label resid="Lbl.GroupTransformation"/>
+                
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.columns.16"/>
+                    <bt:Image size="32" resid="Icon.columns.32"/>
+                    <bt:Image size="80" resid="Icon.columns.80"/>
+                  </Icon>
+                <Control xsi:type="Menu" id="MenuColonnes">
+                  <Label resid="Lbl.MenuColonnes"/>
+                  <Supertip>
+                    <Title resid="Lbl.MenuColonnes"/>
+                    <Description resid="Desc.MenuColonnes"/>
+                  </Supertip>
+                  
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.columns.16"/>
+                    <bt:Image size="32" resid="Icon.columns.32"/>
+                    <bt:Image size="80" resid="Icon.columns.80"/>
+                  </Icon>
+                  <Items>
+                    <Item id="ColSeparate">
+                      <Label resid="Lbl.ColSeparate"/>
+                      <Supertip>
+                        <Title resid="Lbl.ColSeparate"/>
+                        <Description resid="Desc.ColSeparate"/>
+                      </Supertip>
+                      
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.col-separate.16"/>
+                    <bt:Image size="32" resid="Icon.col-separate.32"/>
+                    <bt:Image size="80" resid="Icon.col-separate.80"/>
+                  </Icon>
+                      <Action xsi:type="ShowTaskpane">
+                        <TaskpaneId>SmartCleanerPane</TaskpaneId>
+                        <SourceLocation resid="Url.ColSeparate"/>
+                      </Action>
+                    </Item>
+                    <Item id="ColMergeText">
+                      <Label resid="Lbl.ColMergeText"/>
+                      <Supertip>
+                        <Title resid="Lbl.ColMergeText"/>
+                        <Description resid="Desc.ColMergeText"/>
+                      </Supertip>
+                      
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.col-merge-text.16"/>
+                    <bt:Image size="32" resid="Icon.col-merge-text.32"/>
+                    <bt:Image size="80" resid="Icon.col-merge-text.80"/>
+                  </Icon>
+                      <Action xsi:type="ShowTaskpane">
+                        <TaskpaneId>SmartCleanerPane</TaskpaneId>
+                        <SourceLocation resid="Url.ColMergeText"/>
+                      </Action>
+                    </Item>
+                    <Item id="ColExtract">
+                      <Label resid="Lbl.ColExtract"/>
+                      <Supertip>
+                        <Title resid="Lbl.ColExtract"/>
+                        <Description resid="Desc.ColExtract"/>
+                      </Supertip>
+                      
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.col-extract.16"/>
+                    <bt:Image size="32" resid="Icon.col-extract.32"/>
+                    <bt:Image size="80" resid="Icon.col-extract.80"/>
+                  </Icon>
+                      <Action xsi:type="ShowTaskpane">
+                        <TaskpaneId>SmartCleanerPane</TaskpaneId>
+                        <SourceLocation resid="Url.ColExtract"/>
+                      </Action>
+                    </Item>
+                    <Item id="ColAnonymize">
+                      <Label resid="Lbl.ColAnonymize"/>
+                      <Supertip>
+                        <Title resid="Lbl.ColAnonymize"/>
+                        <Description resid="Desc.ColAnonymize"/>
+                      </Supertip>
+                      
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.col-anonymize.16"/>
+                    <bt:Image size="32" resid="Icon.col-anonymize.32"/>
+                    <bt:Image size="80" resid="Icon.col-anonymize.80"/>
+                  </Icon>
+                      <Action xsi:type="ShowTaskpane">
+                        <TaskpaneId>SmartCleanerPane</TaskpaneId>
+                        <SourceLocation resid="Url.ColAnonymize"/>
+                      </Action>
+                    </Item>
+                    <Item id="ColDates">
+                      <Label resid="Lbl.ColDates"/>
+                      <Supertip>
+                        <Title resid="Lbl.ColDates"/>
+                        <Description resid="Desc.ColDates"/>
+                      </Supertip>
+                      
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.col-dates.16"/>
+                    <bt:Image size="32" resid="Icon.col-dates.32"/>
+                    <bt:Image size="80" resid="Icon.col-dates.80"/>
+                  </Icon>
+                      <Action xsi:type="ShowTaskpane">
+                        <TaskpaneId>SmartCleanerPane</TaskpaneId>
+                        <SourceLocation resid="Url.ColDates"/>
+                      </Action>
+                    </Item>
+                    <Item id="ColCalculated">
+                      <Label resid="Lbl.ColCalculated"/>
+                      <Supertip>
+                        <Title resid="Lbl.ColCalculated"/>
+                        <Description resid="Desc.ColCalculated"/>
+                      </Supertip>
+                      
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.col-calculated.16"/>
+                    <bt:Image size="32" resid="Icon.col-calculated.32"/>
+                    <bt:Image size="80" resid="Icon.col-calculated.80"/>
+                  </Icon>
+                      <Action xsi:type="ShowTaskpane">
+                        <TaskpaneId>SmartCleanerPane</TaskpaneId>
+                        <SourceLocation resid="Url.ColCalculated"/>
+                      </Action>
+                    </Item>
+                    <Item id="ColByExample">
+                      <Label resid="Lbl.ColByExample"/>
+                      <Supertip>
+                        <Title resid="Lbl.ColByExample"/>
+                        <Description resid="Desc.ColByExample"/>
+                      </Supertip>
+                      
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.col-by-example.16"/>
+                    <bt:Image size="32" resid="Icon.col-by-example.32"/>
+                    <bt:Image size="80" resid="Icon.col-by-example.80"/>
+                  </Icon>
+                      <Action xsi:type="ShowTaskpane">
+                        <TaskpaneId>SmartCleanerPane</TaskpaneId>
+                        <SourceLocation resid="Url.ColByExample"/>
+                      </Action>
+                    </Item>
+                  </Items>
+                </Control>
+                <Control xsi:type="Menu" id="MenuLignes">
+                  <Label resid="Lbl.MenuLignes"/>
+                  <Supertip>
+                    <Title resid="Lbl.MenuLignes"/>
+                    <Description resid="Desc.MenuLignes"/>
+                  </Supertip>
+                  
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.rows.16"/>
+                    <bt:Image size="32" resid="Icon.rows.32"/>
+                    <bt:Image size="80" resid="Icon.rows.80"/>
+                  </Icon>
+                  <Items>
+                    <Item id="RowPropagate">
+                      <Label resid="Lbl.RowPropagate"/>
+                      <Supertip>
+                        <Title resid="Lbl.RowPropagate"/>
+                        <Description resid="Desc.RowPropagate"/>
+                      </Supertip>
+                      
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.row-propagate.16"/>
+                    <bt:Image size="32" resid="Icon.row-propagate.32"/>
+                    <bt:Image size="80" resid="Icon.row-propagate.80"/>
+                  </Icon>
+                      <Action xsi:type="ShowTaskpane">
+                        <TaskpaneId>SmartCleanerPane</TaskpaneId>
+                        <SourceLocation resid="Url.RowPropagate"/>
+                      </Action>
+                    </Item>
+                    <Item id="RowIsolate">
+                      <Label resid="Lbl.RowIsolate"/>
+                      <Supertip>
+                        <Title resid="Lbl.RowIsolate"/>
+                        <Description resid="Desc.RowIsolate"/>
+                      </Supertip>
+                      
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.row-isolate.16"/>
+                    <bt:Image size="32" resid="Icon.row-isolate.32"/>
+                    <bt:Image size="80" resid="Icon.row-isolate.80"/>
+                  </Icon>
+                      <Action xsi:type="ShowTaskpane">
+                        <TaskpaneId>SmartCleanerPane</TaskpaneId>
+                        <SourceLocation resid="Url.RowIsolate"/>
+                      </Action>
+                    </Item>
+                  </Items>
+                </Control>
+              </Group>
+              <Group id="GroupCombiner">
+                <Label resid="Lbl.GroupCombiner"/>
+                
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.merge.16"/>
+                    <bt:Image size="32" resid="Icon.merge.32"/>
+                    <bt:Image size="80" resid="Icon.merge.80"/>
+                  </Icon>
+                <Control xsi:type="Button" id="BtnMerge">
+                  <Label resid="Lbl.BtnMerge"/>
+                  <Supertip>
+                    <Title resid="Lbl.BtnMerge"/>
+                    <Description resid="Desc.BtnMerge"/>
+                  </Supertip>
+                  
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.merge.16"/>
+                    <bt:Image size="32" resid="Icon.merge.32"/>
+                    <bt:Image size="80" resid="Icon.merge.80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>SmartCleanerPane</TaskpaneId>
+                    <SourceLocation resid="Url.BtnMerge"/>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnAppend">
+                  <Label resid="Lbl.BtnAppend"/>
+                  <Supertip>
+                    <Title resid="Lbl.BtnAppend"/>
+                    <Description resid="Desc.BtnAppend"/>
+                  </Supertip>
+                  
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.append.16"/>
+                    <bt:Image size="32" resid="Icon.append.32"/>
+                    <bt:Image size="80" resid="Icon.append.80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>SmartCleanerPane</TaskpaneId>
+                    <SourceLocation resid="Url.BtnAppend"/>
+                  </Action>
+                </Control>
+              </Group>
+              <Group id="GroupAutomation">
+                <Label resid="Lbl.GroupAutomation"/>
+                
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.reapply.16"/>
+                    <bt:Image size="32" resid="Icon.reapply.32"/>
+                    <bt:Image size="80" resid="Icon.reapply.80"/>
+                  </Icon>
+                <Control xsi:type="Button" id="BtnReapply">
+                  <Label resid="Lbl.BtnReapply"/>
+                  <Supertip>
+                    <Title resid="Lbl.BtnReapply"/>
+                    <Description resid="Desc.BtnReapply"/>
+                  </Supertip>
+                  
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.reapply.16"/>
+                    <bt:Image size="32" resid="Icon.reapply.32"/>
+                    <bt:Image size="80" resid="Icon.reapply.80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>SmartCleanerPane</TaskpaneId>
+                    <SourceLocation resid="Url.BtnReapply"/>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="BtnWatchFolder">
+                  <Label resid="Lbl.BtnWatchFolder"/>
+                  <Supertip>
+                    <Title resid="Lbl.BtnWatchFolder"/>
+                    <Description resid="Desc.BtnWatchFolder"/>
+                  </Supertip>
+                  
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.watch-folder.16"/>
+                    <bt:Image size="32" resid="Icon.watch-folder.32"/>
+                    <bt:Image size="80" resid="Icon.watch-folder.80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>SmartCleanerPane</TaskpaneId>
+                    <SourceLocation resid="Url.BtnWatchFolder"/>
+                  </Action>
+                </Control>
+              </Group>
+              <Label resid="Tab.Label"/>
             </CustomTab>
           </ExtensionPoint>
         </DesktopFormFactor>
@@ -77,26 +474,157 @@
 
     <Resources>
       <bt:Images>
-        <bt:Image id="Icon.SmartCleaner.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-16.png"/>
-        <bt:Image id="Icon.SmartCleaner.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-32.png"/>
-        <bt:Image id="Icon.SmartCleaner.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-80.png"/>
+        <bt:Image id="Icon.open.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-open-16-v2.png"/>
+        <bt:Image id="Icon.open.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-open-32-v2.png"/>
+        <bt:Image id="Icon.open.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-open-80-v2.png"/>
+        <bt:Image id="Icon.import.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-16-v2.png"/>
+        <bt:Image id="Icon.import.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-32-v2.png"/>
+        <bt:Image id="Icon.import.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-80-v2.png"/>
+        <bt:Image id="Icon.scan.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-scan-16-v2.png"/>
+        <bt:Image id="Icon.scan.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-scan-32-v2.png"/>
+        <bt:Image id="Icon.scan.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-scan-80-v2.png"/>
+        <bt:Image id="Icon.columns.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-columns-16-v2.png"/>
+        <bt:Image id="Icon.columns.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-columns-32-v2.png"/>
+        <bt:Image id="Icon.columns.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-columns-80-v2.png"/>
+        <bt:Image id="Icon.rows.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-rows-16-v2.png"/>
+        <bt:Image id="Icon.rows.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-rows-32-v2.png"/>
+        <bt:Image id="Icon.rows.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-rows-80-v2.png"/>
+        <bt:Image id="Icon.merge.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-merge-16-v2.png"/>
+        <bt:Image id="Icon.merge.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-merge-32-v2.png"/>
+        <bt:Image id="Icon.merge.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-merge-80-v2.png"/>
+        <bt:Image id="Icon.append.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-append-16-v2.png"/>
+        <bt:Image id="Icon.append.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-append-32-v2.png"/>
+        <bt:Image id="Icon.append.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-append-80-v2.png"/>
+        <bt:Image id="Icon.reapply.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-reapply-16-v2.png"/>
+        <bt:Image id="Icon.reapply.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-reapply-32-v2.png"/>
+        <bt:Image id="Icon.reapply.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-reapply-80-v2.png"/>
+        <bt:Image id="Icon.watch-folder.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-watch-folder-16-v2.png"/>
+        <bt:Image id="Icon.watch-folder.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-watch-folder-32-v2.png"/>
+        <bt:Image id="Icon.watch-folder.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-watch-folder-80-v2.png"/>
+        <bt:Image id="Icon.app.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-16-v2.png"/>
+        <bt:Image id="Icon.app.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-32-v2.png"/>
+        <bt:Image id="Icon.app.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-80-v2.png"/>
+        <bt:Image id="Icon.import-file.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-file-16-v2.png"/>
+        <bt:Image id="Icon.import-file.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-file-32-v2.png"/>
+        <bt:Image id="Icon.import-file.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-file-80-v2.png"/>
+        <bt:Image id="Icon.import-folder.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-folder-16-v2.png"/>
+        <bt:Image id="Icon.import-folder.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-folder-32-v2.png"/>
+        <bt:Image id="Icon.import-folder.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-folder-80-v2.png"/>
+        <bt:Image id="Icon.import-sql.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-sql-16-v2.png"/>
+        <bt:Image id="Icon.import-sql.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-sql-32-v2.png"/>
+        <bt:Image id="Icon.import-sql.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-sql-80-v2.png"/>
+        <bt:Image id="Icon.import-web.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-web-16-v2.png"/>
+        <bt:Image id="Icon.import-web.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-web-32-v2.png"/>
+        <bt:Image id="Icon.import-web.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-import-web-80-v2.png"/>
+        <bt:Image id="Icon.col-separate.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-separate-16-v2.png"/>
+        <bt:Image id="Icon.col-separate.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-separate-32-v2.png"/>
+        <bt:Image id="Icon.col-separate.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-separate-80-v2.png"/>
+        <bt:Image id="Icon.col-merge-text.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-merge-text-16-v2.png"/>
+        <bt:Image id="Icon.col-merge-text.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-merge-text-32-v2.png"/>
+        <bt:Image id="Icon.col-merge-text.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-merge-text-80-v2.png"/>
+        <bt:Image id="Icon.col-extract.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-extract-16-v2.png"/>
+        <bt:Image id="Icon.col-extract.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-extract-32-v2.png"/>
+        <bt:Image id="Icon.col-extract.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-extract-80-v2.png"/>
+        <bt:Image id="Icon.col-anonymize.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-anonymize-16-v2.png"/>
+        <bt:Image id="Icon.col-anonymize.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-anonymize-32-v2.png"/>
+        <bt:Image id="Icon.col-anonymize.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-anonymize-80-v2.png"/>
+        <bt:Image id="Icon.col-dates.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-dates-16-v2.png"/>
+        <bt:Image id="Icon.col-dates.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-dates-32-v2.png"/>
+        <bt:Image id="Icon.col-dates.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-dates-80-v2.png"/>
+        <bt:Image id="Icon.col-calculated.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-calculated-16-v2.png"/>
+        <bt:Image id="Icon.col-calculated.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-calculated-32-v2.png"/>
+        <bt:Image id="Icon.col-calculated.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-calculated-80-v2.png"/>
+        <bt:Image id="Icon.col-by-example.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-by-example-16-v2.png"/>
+        <bt:Image id="Icon.col-by-example.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-by-example-32-v2.png"/>
+        <bt:Image id="Icon.col-by-example.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-col-by-example-80-v2.png"/>
+        <bt:Image id="Icon.row-propagate.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-propagate-16-v2.png"/>
+        <bt:Image id="Icon.row-propagate.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-propagate-32-v2.png"/>
+        <bt:Image id="Icon.row-propagate.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-propagate-80-v2.png"/>
+        <bt:Image id="Icon.row-isolate.16" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-isolate-16-v2.png"/>
+        <bt:Image id="Icon.row-isolate.32" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-isolate-32-v2.png"/>
+        <bt:Image id="Icon.row-isolate.80" DefaultValue="https://mes-outils-excel.vercel.app/assets/icon-row-isolate-80-v2.png"/>
       </bt:Images>
 
       <bt:Urls>
         <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://mes-outils-excel.vercel.app"/>
-        <bt:Url id="Taskpane.SmartCleaner" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html"/>
+        <bt:Url id="Url.Open" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=home"/>
+        <bt:Url id="Url.ImportFile" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=importer&amp;action=file"/>
+        <bt:Url id="Url.ImportFolder" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=importer&amp;action=folder"/>
+        <bt:Url id="Url.ImportSql" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=importer&amp;action=sql"/>
+        <bt:Url id="Url.ImportWeb" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=importer&amp;action=web"/>
+        <bt:Url id="Url.BtnScanner" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=diagnostic&amp;action=scan"/>
+        <bt:Url id="Url.ColSeparate" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=transformation&amp;action=col-separate"/>
+        <bt:Url id="Url.ColMergeText" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=transformation&amp;action=col-merge-text"/>
+        <bt:Url id="Url.ColExtract" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=transformation&amp;action=col-extract"/>
+        <bt:Url id="Url.ColAnonymize" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=transformation&amp;action=col-anonymize"/>
+        <bt:Url id="Url.ColDates" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=transformation&amp;action=col-dates"/>
+        <bt:Url id="Url.ColCalculated" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=transformation&amp;action=col-calculated"/>
+        <bt:Url id="Url.ColByExample" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=transformation&amp;action=col-by-example"/>
+        <bt:Url id="Url.RowPropagate" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=transformation&amp;action=row-propagate"/>
+        <bt:Url id="Url.RowIsolate" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=transformation&amp;action=row-isolate"/>
+        <bt:Url id="Url.BtnMerge" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=combiner&amp;action=merge"/>
+        <bt:Url id="Url.BtnAppend" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=combiner&amp;action=append"/>
+        <bt:Url id="Url.BtnReapply" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=automation&amp;action=reapply"/>
+        <bt:Url id="Url.BtnWatchFolder" DefaultValue="https://mes-outils-excel.vercel.app/taskpane.html?view=automation&amp;action=watch-folder"/>
       </bt:Urls>
 
       <bt:ShortStrings>
         <bt:String id="GetStarted.Title" DefaultValue="Bienvenue dans Smart Cleaner AI"/>
         <bt:String id="Tab.Label" DefaultValue="Smart Cleaner AI"/>
-        <bt:String id="Group.SmartCleaner.Label" DefaultValue="Smart Cleaner AI"/>
-        <bt:String id="Btn.SmartCleaner.Ouvrir.Label" DefaultValue="Ouvrir Smart Cleaner AI"/>
+        <bt:String id="Lbl.Open" DefaultValue="Ouvrir Smart Cleaner AI"/>
+        <bt:String id="Lbl.OpenGroup" DefaultValue="Smart Cleaner AI"/>
+        <bt:String id="Lbl.GroupImporter" DefaultValue="Importer"/>
+        <bt:String id="Lbl.MenuImporter" DefaultValue="Importer"/>
+        <bt:String id="Lbl.ImportFile" DefaultValue="Fichier Excel/CSV"/>
+        <bt:String id="Lbl.ImportFolder" DefaultValue="Dossier complet"/>
+        <bt:String id="Lbl.ImportSql" DefaultValue="Base SQL/Access"/>
+        <bt:String id="Lbl.ImportWeb" DefaultValue="Lien Web (URL)"/>
+        <bt:String id="Lbl.GroupDiagnostic" DefaultValue="Diagnostic"/>
+        <bt:String id="Lbl.BtnScanner" DefaultValue="Scanner"/>
+        <bt:String id="Lbl.GroupTransformation" DefaultValue="Transformation"/>
+        <bt:String id="Lbl.MenuColonnes" DefaultValue="Colonnes"/>
+        <bt:String id="Lbl.ColSeparate" DefaultValue="Séparer"/>
+        <bt:String id="Lbl.ColMergeText" DefaultValue="Fusionner texte"/>
+        <bt:String id="Lbl.ColExtract" DefaultValue="Extraction IA"/>
+        <bt:String id="Lbl.ColAnonymize" DefaultValue="Anonymiser RGPD"/>
+        <bt:String id="Lbl.ColDates" DefaultValue="Spécial Dates"/>
+        <bt:String id="Lbl.ColCalculated" DefaultValue="Calculée"/>
+        <bt:String id="Lbl.ColByExample" DefaultValue="Par l'exemple"/>
+        <bt:String id="Lbl.MenuLignes" DefaultValue="Lignes"/>
+        <bt:String id="Lbl.RowPropagate" DefaultValue="Propager (Fill Up/Down)"/>
+        <bt:String id="Lbl.RowIsolate" DefaultValue="Isoler lignes suspectes"/>
+        <bt:String id="Lbl.GroupCombiner" DefaultValue="Combiner"/>
+        <bt:String id="Lbl.BtnMerge" DefaultValue="Fusionner"/>
+        <bt:String id="Lbl.BtnAppend" DefaultValue="Combiner"/>
+        <bt:String id="Lbl.GroupAutomation" DefaultValue="Automation"/>
+        <bt:String id="Lbl.BtnReapply" DefaultValue="Réappliquer"/>
+        <bt:String id="Lbl.BtnWatchFolder" DefaultValue="Suivre Dossier"/>
       </bt:ShortStrings>
 
       <bt:LongStrings>
         <bt:String id="GetStarted.Description" DefaultValue="Nettoyez et restructurez vos données sans jamais écraser vos feuilles existantes."/>
-        <bt:String id="Btn.SmartCleaner.Ouvrir.Desc" DefaultValue="Ouvre le volet Smart Cleaner AI : diagnostic, transformation, fusion multi-fichiers et automatisation."/>
+        <bt:String id="Desc.Open" DefaultValue="Ouvre le volet Smart Cleaner AI sur la vue d'accueil."/>
+        <bt:String id="Desc.MenuImporter" DefaultValue="Charger des données depuis Excel, CSV, dossier, SQL ou le Web."/>
+        <bt:String id="Desc.ImportFile" DefaultValue="Fichier Excel/CSV"/>
+        <bt:String id="Desc.ImportFolder" DefaultValue="Dossier complet"/>
+        <bt:String id="Desc.ImportSql" DefaultValue="Base SQL/Access"/>
+        <bt:String id="Desc.ImportWeb" DefaultValue="Lien Web (URL)"/>
+        <bt:String id="Desc.BtnScanner" DefaultValue="Ouvre le volet sur le diagnostic et lance l'analyse clinique instantanée."/>
+        <bt:String id="Desc.MenuColonnes" DefaultValue="Séparer, fusionner, extraire, anonymiser ou calculer des colonnes."/>
+        <bt:String id="Desc.ColSeparate" DefaultValue="Séparer"/>
+        <bt:String id="Desc.ColMergeText" DefaultValue="Fusionner texte"/>
+        <bt:String id="Desc.ColExtract" DefaultValue="Extraction IA"/>
+        <bt:String id="Desc.ColAnonymize" DefaultValue="Anonymiser RGPD"/>
+        <bt:String id="Desc.ColDates" DefaultValue="Spécial Dates"/>
+        <bt:String id="Desc.ColCalculated" DefaultValue="Calculée"/>
+        <bt:String id="Desc.ColByExample" DefaultValue="Par l'exemple"/>
+        <bt:String id="Desc.MenuLignes" DefaultValue="Propager des valeurs ou isoler des lignes suspectes."/>
+        <bt:String id="Desc.RowPropagate" DefaultValue="Propager (Fill Up/Down)"/>
+        <bt:String id="Desc.RowIsolate" DefaultValue="Isoler lignes suspectes"/>
+        <bt:String id="Desc.BtnMerge" DefaultValue="Fusionner (Merge) des tables sur leurs clés communes."/>
+        <bt:String id="Desc.BtnAppend" DefaultValue="Empiler (Append) des tables aux structures compatibles."/>
+        <bt:String id="Desc.BtnReapply" DefaultValue="Rejouer la recette de nettoyage enregistrée sur les données actuelles."/>
+        <bt:String id="Desc.BtnWatchFolder" DefaultValue="Automatiser le nettoyage sur les nouveaux fichiers d'un dossier."/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>

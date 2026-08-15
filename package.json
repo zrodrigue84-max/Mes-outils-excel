@@ -5,9 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:excel": "office-addin-debugging start manifest.dev.xml desktop --app excel --dev-server \"npm run dev\" --dev-server-port 3000",
     "build": "vite build",
     "preview": "vite preview",
     "test:backend": "node scripts/test-nettoyage.js",
+    "test:routes": "node scripts/test-routes.js",
+    "generate:icons": "node scripts/generate-ribbon-icons.js",
+    "generate:manifest": "node scripts/generate-manifests.js",
+    "test:manifest": "npm run generate:icons && npm run generate:manifest && node scripts/test-icons.js && npx office-addin-manifest validate manifest.xml && npx office-addin-manifest validate manifest.dev.xml",
     "start": "office-addin-debugging start manifest.xml desktop"
   },
   "dependencies": {
@@ -17,12 +22,15 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@fluentui/svg-icons": "^1.1.337",
     "@types/office-js": "^1.0.430",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
     "office-addin-debugging": "^5.1.6",
+    "office-addin-dev-certs": "^1.13.5",
     "office-addin-manifest": "^1.13.5",
+    "sharp": "^0.35.3",
     "typescript": "^5.7.2",
     "vite": "^6.0.3"
   }
