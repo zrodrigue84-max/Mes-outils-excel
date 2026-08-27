@@ -20,9 +20,10 @@ const useStyles = makeStyles({
 
 interface BlockContentProps {
   route: AppRoute;
+  onStepApplied?: (label: string) => void;
 }
 
-const BlockContent: React.FC<BlockContentProps> = ({ route }) => {
+const BlockContent: React.FC<BlockContentProps> = ({ route, onStepApplied }) => {
   const styles = useStyles();
 
   let content: React.ReactNode;
@@ -34,7 +35,7 @@ const BlockContent: React.FC<BlockContentProps> = ({ route }) => {
       content = <ImporterBlock action={route.action} />;
       break;
     case 'diagnostic':
-      content = <DiagnosticBlock action={route.action} />;
+      content = <DiagnosticBlock action={route.action} onStepApplied={onStepApplied} />;
       break;
     case 'transformation':
       content = <TransformationBlock action={route.action} />;
@@ -46,7 +47,7 @@ const BlockContent: React.FC<BlockContentProps> = ({ route }) => {
       content = <AutomationBlock action={route.action} />;
       break;
     default:
-      content = <DiagnosticBlock action="scan" />;
+      content = <DiagnosticBlock action="scan" onStepApplied={onStepApplied} />;
   }
 
   return (

@@ -42,12 +42,14 @@ interface BlockShellProps {
   title: string;
   description: string;
   phaseLabel: string;
+  children?: React.ReactNode;
 }
 
 export const BlockShell: React.FC<BlockShellProps> = ({
   title,
   description,
   phaseLabel,
+  children,
 }) => {
   const styles = useStyles();
 
@@ -60,10 +62,12 @@ export const BlockShell: React.FC<BlockShellProps> = ({
         </Badge>
       </div>
       <Caption1 className={styles.description}>{description}</Caption1>
-      <div className={styles.comingSoon}>
-        <Body1>Contenu à venir</Body1>
-        <Caption1>Ce bloc sera développé dans une prochaine phase.</Caption1>
-      </div>
+      {children ?? (
+        <div className={styles.comingSoon}>
+          <Body1>Contenu à venir</Body1>
+          <Caption1>Ce bloc sera développé dans une prochaine phase.</Caption1>
+        </div>
+      )}
     </Card>
   );
 };

@@ -19,11 +19,24 @@ const App: React.FC = () => {
     ]);
   };
 
+  const handleStepApplied = (label: string) => {
+    setAppliedSteps((prev) => [
+      ...prev,
+      {
+        id: `step-${Date.now()}`,
+        label,
+        view: route.view,
+        timestamp: new Date(),
+      },
+    ]);
+  };
+
   return (
     <TaskPaneLayout
       route={route}
       appliedSteps={appliedSteps}
       onChatSend={handleChatSend}
+      onStepApplied={handleStepApplied}
     />
   );
 };

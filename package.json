@@ -9,6 +9,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test:backend": "node scripts/test-nettoyage.js",
+    "test:scan": "node scripts/test-clinical-scan.js",
     "test:routes": "node scripts/test-routes.js",
     "generate:icons": "node scripts/generate-ribbon-icons.js",
     "generate:manifest": "node scripts/generate-manifests.js",

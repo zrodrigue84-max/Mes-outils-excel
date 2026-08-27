@@ -33,12 +33,14 @@ interface TaskPaneLayoutProps {
   route: AppRoute;
   appliedSteps: AppliedStep[];
   onChatSend?: (message: string) => void;
+  onStepApplied?: (label: string) => void;
 }
 
 const TaskPaneLayout: React.FC<TaskPaneLayoutProps> = ({
   route,
   appliedSteps,
   onChatSend,
+  onStepApplied,
 }) => {
   const styles = useStyles();
 
@@ -47,7 +49,7 @@ const TaskPaneLayout: React.FC<TaskPaneLayoutProps> = ({
       <AppHeader route={route} />
 
       <div className={styles.center}>
-        <BlockContent route={route} />
+        <BlockContent route={route} onStepApplied={onStepApplied} />
       </div>
 
       <div className={styles.anchors}>
